@@ -13,6 +13,7 @@ import { Toaster } from 'react-hot-toast';
 import ErrorPage from './Pages/Error/ErrorPage.jsx';
 import JoinAsEmployee from './Pages/Employee/JoinAsEmployee.jsx';
 import { HelmetProvider } from 'react-helmet-async';
+import JoinAsHr from './Pages/Hr/JoinAsHr.jsx';
 
 const router = createBrowserRouter([
   {
@@ -23,6 +24,10 @@ const router = createBrowserRouter([
       {
         path: '/join-as-employee',
         element: <JoinAsEmployee></JoinAsEmployee>
+      },
+      {
+        path: '/join-as-hr',
+        element: <JoinAsHr></JoinAsHr>
       },
     ]
   },
