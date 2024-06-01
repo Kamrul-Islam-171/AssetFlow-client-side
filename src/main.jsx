@@ -14,6 +14,10 @@ import ErrorPage from './Pages/Error/ErrorPage.jsx';
 import JoinAsEmployee from './Pages/Employee/JoinAsEmployee.jsx';
 import { HelmetProvider } from 'react-helmet-async';
 import JoinAsHr from './Pages/Hr/JoinAsHr.jsx';
+import Home from './Pages/Home/Home.jsx';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+
+const queryClient = new QueryClient()
 
 const router = createBrowserRouter([
   {
@@ -21,6 +25,10 @@ const router = createBrowserRouter([
     element: <Main></Main>,
     errorElement: <ErrorPage></ErrorPage>,
     children: [
+      {
+        path: '/',
+        element: <Home></Home>
+      },
       {
         path: '/join-as-employee',
         element: <JoinAsEmployee></JoinAsEmployee>
@@ -40,10 +48,13 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <HelmetProvider>
-      <AuthProvider>
-        <RouterProvider router={router} />
-        <Toaster></Toaster>
-      </AuthProvider>
+
+      <QueryClientProvider client={queryClient}>
+        <AuthProvider>
+          <RouterProvider router={router} />
+          <Toaster></Toaster>
+        </AuthProvider>
+      </QueryClientProvider>
     </HelmetProvider>
   </React.StrictMode>,
 )

@@ -23,12 +23,12 @@ const useAxiosSecure = () => {
         return Promise.reject(error);
     });
 
-    axios.interceptors.response.use(function (response) {
+    axiosSecure.interceptors.response.use(function (response) {
         
       
         return response;
     }, async (error) => {
-        console.log('i am error', error)
+        // console.log('i am error', error)
         
         const status = error?.response?.status;
         if (status === 401 || status === 403) {
