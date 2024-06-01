@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Provider/AuthProvider";
+import toast from "react-hot-toast";
 
 
 const Login = () => {
@@ -15,20 +16,25 @@ const Login = () => {
         // console.log(email, pass);
         signIn(email, pass)
             .then(result => {
-                console.log(result.user)
+                // console.log(result.user)
+                toast.success('Login successfull')
                 navigate('/')
 
             })
-            .catch(error => console.log(error))
+            .catch(error => {
+                toast.error(error.message)
+            })
 
     }
 
     const handleGoogle = async () => {
         try {
             await signInWithGoogle();
+            toast.success('Login successfull')
             navigate('/')
         } catch (error) {
             console.log(error)
+            toast.error(error.message)
         }
     }
  

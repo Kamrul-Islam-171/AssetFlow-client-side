@@ -1,6 +1,7 @@
 import { useContext } from "react"
 import { Link, NavLink } from "react-router-dom"
 import { AuthContext } from "../../../Provider/AuthProvider"
+import toast from "react-hot-toast";
 
 
 
@@ -17,13 +18,15 @@ const Navbar = () => {
     const handleLogout = async() => {
         try {
             await logOut()
+            toast.success('Logout Successfull')
         } catch (error) {
             console.log(error)
+            toast.error(error.message)
         }
     }
 
     return (
-        <div>
+        <div className="container mx-auto">
             <div className="navbar bg-base-100">
                 <div className="navbar-start">
                     <div className="dropdown">

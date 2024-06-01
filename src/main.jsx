@@ -9,13 +9,21 @@ import {
 import Main from './Compnents/Layouts/Main.jsx';
 import Login from './Pages/Login/Login.jsx';
 import AuthProvider from './Provider/AuthProvider.jsx';
+import { Toaster } from 'react-hot-toast';
+import ErrorPage from './Pages/Error/ErrorPage.jsx';
+import JoinAsEmployee from './Pages/Employee/JoinAsEmployee.jsx';
+import { HelmetProvider } from 'react-helmet-async';
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Main></Main>,
+    errorElement: <ErrorPage></ErrorPage>,
     children: [
-
+      {
+        path: '/join-as-employee',
+        element: <JoinAsEmployee></JoinAsEmployee>
+      },
     ]
   },
   {
@@ -26,8 +34,11 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <AuthProvider>
-      <RouterProvider router={router} />
-    </AuthProvider>
+    <HelmetProvider>
+      <AuthProvider>
+        <RouterProvider router={router} />
+        <Toaster></Toaster>
+      </AuthProvider>
+    </HelmetProvider>
   </React.StrictMode>,
 )
