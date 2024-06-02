@@ -3,11 +3,17 @@ import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import AssetTable from "../../Compnents/HrComponents/AssetTable";
 import { useQuery } from "@tanstack/react-query";
 import toast from "react-hot-toast";
+import LoadingSpinner from "../../Compnents/LoadingSpinner/LoadingSpinner";
+import NoData from "../../Compnents/NoData/NoData";
 
 
 const AssetList = () => {
     const [search, setSearch] = useState('');
     const axiosSecure = useAxiosSecure();
+    const [returnAble, setReturnAble] = useState('');
+    const [sort, setSort] = useState(false);
+    // console.log(sort)
+
     // const [assets, setAssets] = useState([]);
 
     // useEffect(() => {
@@ -18,7 +24,7 @@ const AssetList = () => {
     // }, [search, axiosSecure])
 
     const { data: assets = [], isLoading } = useQuery({
-        queryKey: ['assets', search],
+        queryKey: ['assets', search, returnAble, sort],
         queryFn: async () => {
             // try {
             //     const {data} = axiosSecure.get(`/assets?search=${search}`);
@@ -27,7 +33,7 @@ const AssetList = () => {
             //     console.log(error.message);
             //     toast.error(error.message)
             // }
-            const { data } = await axiosSecure.get(`/assets?search=${search}`);
+            const { data } = await axiosSecure.get(`/assets?search=${search}&returnOrNot=${returnAble}&sortData=${sort?'asc':'dsc'}`);
             return data;
         }
     })
@@ -39,8 +45,14 @@ const AssetList = () => {
         setSearch(serachValue);
     }
 
-    if(isLoading) {
-        return <p className="text-5xl">Loading...</p>
+    if (isLoading) {
+        return <LoadingSpinner></LoadingSpinner>
+    }
+
+    const handleType = e => {
+        // e.preventDefault()
+        setReturnAble(e.target.value);
+
     }
     // console.log(search)
     return (
@@ -48,17 +60,45 @@ const AssetList = () => {
             <div className="mt-16">
                 <form onSubmit={handleSearch} className="space-y-5">
                     <div className="flex justify-center" >
-                        <input className="border border-primary-color w-1/2 px-5 py-2 rounded-lg outline-none" placeholder="Search by name" type="text" name='search' />
+                        <input defaultValue={search} className="border border-primary-color w-1/2 px-5 py-2 rounded-lg outline-none" placeholder="Search by name" type="text" name='search' />
                     </div>
                     <div className="flex justify-center">
-                        <button className="btn bg-primary-color outline-none border-0 text-white">Search</button>
+                        <button className="btn bg-primary-color hover:bg-white hover:text-primary-color outline-none border-0 text-white">Search</button>
                     </div>
                 </form>
 
             </div>
-            <div>
-                <AssetTable assets={assets}></AssetTable>
+
+            <div className="flex flex-col lg:flex-row md:flex-row  justify-center items-center gap-5 mt-10">
+                {/* <div className="">
+                    <p>Returnable / Nonreturnable</p>
+                    <select name="returnOrNot" id="" onChange={handleType} className="px-10 py-2">
+                        <option value="">Select Type</option>
+                        <option value="returnable">Returnable</option>
+                        <option value="non-returnable">Nonreturnable</option>
+                    </select>
+                </div> */}
+                <div className="space-y-2">
+                    <p>Returnable / Nonreturnable</p>
+                    <select defaultValue={returnAble} name="returnOrNot" id="" onChange={handleType} className="px-10 py-2">
+                        <option value="">Select Type</option>
+                        <option value="returnable">Returnable</option>
+                        <option value="non-returnable">Nonreturnable</option>
+                    </select>
+                </div>
             </div>
+
+            <div className="flex justify-center mt-5">
+                <button onClick={() => setSort(!sort)} className="btn bg-primary-color hover:bg-white hover:text-primary-color outline-none border-0 text-white">{sort ? 'High to Low' : 'Low to High'}</button>
+            </div>
+
+            <div className="mt-10">
+                {
+                    assets?.length > 0 ? <AssetTable assets={assets}></AssetTable> : <NoData></NoData>
+                }
+            </div>
+            
+            {/* <LoadingSpinner></LoadingSpinner> */}
         </div>
     );
 };

@@ -27,8 +27,8 @@ const AssetTable = ({ assets }) => {
                                 <td>{item.ProductType}</td>
                                 <td>{item.Quantity}</td>
                                 <td>{item.Date}</td>
-                                <td><button className="btn bg-primary-color border-0 text-white">Update</button></td>
-                                <td><button className="btn bg-primary-color border-0 text-white">Delete</button></td>
+                                <td><button className="btn hover:text-primary-color hover:bg-white bg-primary-color border-0 text-white">Update</button></td>
+                                <td><button className="btn hover:text-primary-color hover:bg-white bg-primary-color border-0 text-white">Delete</button></td>
                             </tr>)
                         }
 

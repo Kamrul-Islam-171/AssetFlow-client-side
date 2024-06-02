@@ -10,7 +10,7 @@ const AddAsset = () => {
         const form = e.target;
         const ProductName = form.name.value;
         const ProductType = form.proType.value;
-        const Quantity = form.quantity.value;
+        const Quantity = parseInt(form.quantity.value);
 
         const ProductInfo = {
             ProductName, ProductType, Quantity, Date: new Date().toLocaleDateString()
