@@ -16,6 +16,8 @@ import { HelmetProvider } from 'react-helmet-async';
 import JoinAsHr from './Pages/Hr/JoinAsHr.jsx';
 import Home from './Pages/Home/Home.jsx';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import AddAsset from './Pages/HrPages/AddAsset.jsx';
+import AssetList from './Pages/HrPages/AssetList.jsx';
 
 const queryClient = new QueryClient()
 
@@ -37,12 +39,22 @@ const router = createBrowserRouter([
         path: '/join-as-hr',
         element: <JoinAsHr></JoinAsHr>
       },
+      {
+        path:'/add-asset',
+        element:<AddAsset></AddAsset>
+      },
+      {
+        path:'/asset-list',
+        element:<AssetList></AssetList>
+      }
+  
     ]
   },
   {
     path: '/login',
     element: <Login></Login>
-  }
+  },
+  
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(

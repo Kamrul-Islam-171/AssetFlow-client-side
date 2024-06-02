@@ -7,31 +7,73 @@ const PackageSection = () => {
             <h1 className="text-4xl text-center">Packages Plan</h1>
             <p className='text-center'>Unlock efficient asset tracking tailored for HR Managers with our specialized packages.</p>
             <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-6 pt-5'>
-                <div className=" shadow-lg p-5 shadow-slate-400">
-                    <div className="flex justify-center items-center h-[200px] ">
-                        <p className="text-2xl">Maximum 5 employees Plan</p>
-                    </div>
-                    <div className='text-end'>
-                        <Link to={'/'} className="bg-secondary-color text-white px-5 py-2 text-lg font-semibold">Price : $5</Link>
+
+                <div>
+                    <div className='border-2 border-primary-color px-5 py-8  rounded-lg'>
+                        <div className='flex justify-between text-2xl '>
+                            <p>Premium</p>
+                            <p>$5</p>
+                        </div>
+                        <div className='mt-10 pl-4'>
+                            <ul>
+                                <li className='list-disc'>Maximum 5 employees</li>
+                            </ul>
+                        </div>
+                        <div className='mt-10'>
+                            <p className='bg-secondary-color p-3 rounded-full text-center text-white text-lg'>Pay</p>
+                        </div>
                     </div>
                 </div>
-                <div className="shadow-lg p-5 shadow-slate-400">
-                    <div className="flex justify-center items-center h-[200px] ">
-                        <p className="text-2xl">Maximum 10 employees Plan</p>
-                    </div>
-                    <div className='text-end'>
-                        <Link to={'/'} className="bg-secondary-color text-white px-5 py-2 text-lg font-semibold">Price : $8</Link>
+                <div>
+                    <div className='border-2 border-primary-color px-5 py-8  rounded-lg'>
+                        <div className='flex justify-between text-2xl '>
+                            <p>Premium</p>
+                            <p>$8</p>
+                        </div>
+                        <div className='mt-10 pl-4'>
+                            <ul>
+                                <li className='list-disc'>Maximum 10 employees</li>
+                            </ul>
+                        </div>
+                        <div className='mt-10'>
+                            <p className='bg-secondary-color p-3 rounded-full text-center text-white text-lg'>Pay</p>
+                        </div>
                     </div>
                 </div>
-                <div className="shadow-lg p-5 shadow-slate-400">
-                    <div className="flex justify-center items-center h-[200px] ">
-                        <p className="text-2xl">Maximum 20 employees Plan</p>
-                    </div>
-                    <div className='text-end'>
-                        <Link to={'/'} className="bg-secondary-color text-white px-5 py-2 text-lg font-semibold">Price : $15</Link>
+                <div>
+                    <div className='border-2 border-primary-color px-5 py-8  rounded-lg'>
+                        <div className='flex justify-between text-2xl '>
+                            <p>Premium</p>
+                            <p>$15</p>
+                        </div>
+                        <div className='mt-10 pl-4'>
+                            <ul>
+                                <li className='list-disc'>Maximum 20 employees</li>
+                            </ul>
+                        </div>
+                        <div className='mt-10'>
+                            <p className='bg-secondary-color p-3 rounded-full text-center text-white text-lg'>Pay</p>
+                        </div>
                     </div>
                 </div>
             </div>
+
+            {/* <div>
+                <div className='border border-primary-color px-5 py-8  rounded-lg'>
+                    <div className='flex justify-between text-2xl '>
+                        <p>Premium</p>
+                        <p>$5</p>
+                    </div>
+                    <div className='mt-10 pl-4'>
+                        <ul>
+                            <li className='list-disc'>Maximum 5 employees</li>
+                        </ul>
+                    </div>
+                    <div className='mt-10'>
+                        <p className='bg-secondary-color p-3 rounded-full text-center text-white text-lg'>Pay</p>
+                    </div>
+                </div>
+            </div> */}
 
         </div>
     );

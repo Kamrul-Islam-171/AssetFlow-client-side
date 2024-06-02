@@ -2,20 +2,30 @@ import { useContext } from "react"
 import { Link, NavLink } from "react-router-dom"
 import { AuthContext } from "../../../Provider/AuthProvider"
 import toast from "react-hot-toast";
+import NormalNav from "../../NomarLavlinks/NormalNav";
+import useRole from "../../../Hooks/useRole";
+import HrNavlinks from "../../HrNavLinks/HrNavlinks";
 
 
 
 const Navbar = () => {
     const { user, logOut } = useContext(AuthContext);
-    const nablinks = <>
+    const [role] = useRole();
+    const nablinks = <  >
 
-        <li><NavLink to={'/'}>Home</NavLink></li>
-        <li><NavLink to={'/join-as-employee'}>Join as Employee</NavLink></li>
-        <li><NavLink to={'/join-as-hr'}>Join as HR Manager</NavLink></li>
+        <div >
+        {/* <NormalNav></NormalNav> */}
+            {
+                role === 'admin' && <NormalNav></NormalNav>
+            }
+            {
+                role === 'HR' && <HrNavlinks></HrNavlinks>
+            }
+        </div>
 
     </>
 
-    const handleLogout = async() => {
+    const handleLogout = async () => {
         try {
             await logOut()
             toast.success('Logout Successfull')
@@ -38,7 +48,12 @@ const Navbar = () => {
                         </ul>
                     </div>
                     <a className="btn btn-ghost text-xl w-[100px]">
-                        Admin
+                        {
+                            role === 'admin' && <p>Admin</p>
+                        }
+                        {
+                            role === 'HR' && <p>HR</p>
+                        }
                     </a>
                 </div>
                 <div className="navbar-center hidden lg:flex">
