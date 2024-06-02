@@ -12,6 +12,7 @@ const AssetList = () => {
     const axiosSecure = useAxiosSecure();
     const [returnAble, setReturnAble] = useState('');
     const [sort, setSort] = useState(false);
+    const [available, setAvailable] = useState('');
     // console.log(sort)
 
     // const [assets, setAssets] = useState([]);
@@ -24,7 +25,7 @@ const AssetList = () => {
     // }, [search, axiosSecure])
 
     const { data: assets = [], isLoading } = useQuery({
-        queryKey: ['assets', search, returnAble, sort],
+        queryKey: ['assets', search, returnAble, sort, available],
         queryFn: async () => {
             // try {
             //     const {data} = axiosSecure.get(`/assets?search=${search}`);
@@ -33,7 +34,7 @@ const AssetList = () => {
             //     console.log(error.message);
             //     toast.error(error.message)
             // }
-            const { data } = await axiosSecure.get(`/assets?search=${search}&returnOrNot=${returnAble}&sortData=${sort?'asc':'dsc'}`);
+            const { data } = await axiosSecure.get(`/assets?search=${search}&returnOrNot=${returnAble}&sortData=${sort?'asc':'dsc'}&available=${available}`);
             return data;
         }
     })
@@ -53,6 +54,9 @@ const AssetList = () => {
         // e.preventDefault()
         setReturnAble(e.target.value);
 
+    }
+    const handleAvailable = e => {
+        setAvailable(e.target.value);
     }
     // console.log(search)
     return (
@@ -84,6 +88,14 @@ const AssetList = () => {
                         <option value="">Select Type</option>
                         <option value="returnable">Returnable</option>
                         <option value="non-returnable">Nonreturnable</option>
+                    </select>
+                </div>
+                <div className="space-y-2">
+                    <p>Available / Out of Stock</p>
+                    <select defaultValue={available} name="returnOrNot" id="" onChange={handleAvailable} className="px-10 py-2">
+                        <option value="">Select Type</option>
+                        <option value="available">Available</option>
+                        <option value="out-of-stock">Out of Stock</option>
                     </select>
                 </div>
             </div>
