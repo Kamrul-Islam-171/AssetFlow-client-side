@@ -5,6 +5,9 @@ import { useQuery } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 import LoadingSpinner from "../../Compnents/LoadingSpinner/LoadingSpinner";
 import NoData from "../../Compnents/NoData/NoData";
+import { GrCaretNext } from "react-icons/gr";
+import { GrCaretPrevious } from "react-icons/gr";
+
 
 
 const AssetList = () => {
@@ -13,50 +16,70 @@ const AssetList = () => {
     const [returnAble, setReturnAble] = useState('');
     const [sort, setSort] = useState(false);
     const [available, setAvailable] = useState('');
-    // console.log(sort)
+    const [page, setPage] = useState(1);
+    const [limit] = useState(4);
+    const [count, setCount] = useState(0);
+    const [currentPage, setCurrentPage] = useState(1);
+    const itemsPerpage = 4;
+    const numberOfPages = Math.ceil(count / itemsPerpage);
+    const pages = [];
+    for(let x = 1; x <= numberOfPages; x++) pages.push(x);
+    console.log(pages)
 
-    // const [assets, setAssets] = useState([]);
+    useEffect(() => {
+        axiosSecure.get(`/assetsCount?search=${search}&returnOrNot=${returnAble}&sortData=${sort ? 'asc' : 'dsc'}&available=${available}`)
+            .then(res => {
+                // console.log('count = ', res.data.count)
+                setCount(res.data.count);
+                
+            })
 
-    // useEffect(() => {
-    //     axiosSecure.get(`/assets?search=${search}`)
-    //     .then(res => {
-    //         setAssets(res.data);
-    //     })
-    // }, [search, axiosSecure])
+    }, [axiosSecure, search, returnAble, sort, available])
+    console.log('curn = ', count)
+   
 
-    const { data: assets = [], isLoading } = useQuery({
-        queryKey: ['assets', search, returnAble, sort, available],
+
+    const { data: assets = [], isLoading, refetch } = useQuery({
+        queryKey: ['assets', search, returnAble, sort, available, page, limit],
         queryFn: async () => {
-            // try {
-            //     const {data} = axiosSecure.get(`/assets?search=${search}`);
-            //     return data;
-            // } catch (error) {
-            //     console.log(error.message);
-            //     toast.error(error.message)
-            // }
-            const { data } = await axiosSecure.get(`/assets?search=${search}&returnOrNot=${returnAble}&sortData=${sort?'asc':'dsc'}&available=${available}`);
+
+            const { data } = await axiosSecure.get(`/assets?search=${search}&returnOrNot=${returnAble}&sortData=${sort ? 'asc' : 'dsc'}&available=${available}&page=${page}&limit=${limit}`);
+            
             return data;
         }
     })
-    console.log(assets)
 
     const handleSearch = async (e) => {
         e.preventDefault();
         const serachValue = e.target.search.value;
         setSearch(serachValue);
+        setPage(1);
+        setCurrentPage(1)
     }
 
-    if (isLoading) {
-        return <LoadingSpinner></LoadingSpinner>
-    }
+
+
 
     const handleType = e => {
         // e.preventDefault()
         setReturnAble(e.target.value);
+        setPage(1);
+        setCurrentPage(1)
 
     }
     const handleAvailable = e => {
         setAvailable(e.target.value);
+        setPage(1);
+        setCurrentPage(1)
+    }
+    const handlePageChange = (newPage) => {
+        setPage(newPage);
+        setCurrentPage(newPage)
+
+        // refetch()
+    }
+    if (isLoading) {
+        return <LoadingSpinner></LoadingSpinner>
     }
     // console.log(search)
     return (
@@ -74,14 +97,7 @@ const AssetList = () => {
             </div>
 
             <div className="flex flex-col lg:flex-row md:flex-row  justify-center items-center gap-5 mt-10">
-                {/* <div className="">
-                    <p>Returnable / Nonreturnable</p>
-                    <select name="returnOrNot" id="" onChange={handleType} className="px-10 py-2">
-                        <option value="">Select Type</option>
-                        <option value="returnable">Returnable</option>
-                        <option value="non-returnable">Nonreturnable</option>
-                    </select>
-                </div> */}
+
                 <div className="space-y-2">
                     <p>Returnable / Nonreturnable</p>
                     <select defaultValue={returnAble} name="returnOrNot" id="" onChange={handleType} className="px-10 py-2">
@@ -106,11 +122,26 @@ const AssetList = () => {
 
             <div className="mt-10">
                 {
-                    assets?.length > 0 ? <AssetTable assets={assets}></AssetTable> : <NoData></NoData>
+                    assets?.length > 0 ? <>
+                        <AssetTable assets={assets}></AssetTable>
+                        <div className="flex justify-center items-center mt-5">
+                            <button onClick={() => handlePageChange(page - 1)} disabled={page === 1} className="btn mr-2"><GrCaretPrevious /></button>
+                            {/* <p>{currentPage}</p> */}
+                            <span className="flex gap-4">
+                                {
+                                    pages?.map((pageNo) => <button onClick={() => {
+                                        setCurrentPage(pageNo)
+                                        setPage(pageNo)
+                                    }} key={pageNo} className={`btn px-5 border-0 ${currentPage === pageNo ? 'bg-secondary-color text-white' : 'text-black'}   `}>{pageNo}</button>)
+                                }
+                            </span>
+                            <button onClick={() => handlePageChange(page + 1)} disabled={assets?.length < limit} className="btn ml-2"><GrCaretNext /></button>
+                        </div>
+                    </> : <NoData></NoData>
                 }
             </div>
-            
-            {/* <LoadingSpinner></LoadingSpinner> */}
+
+
         </div>
     );
 };

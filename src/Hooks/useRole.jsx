@@ -6,7 +6,7 @@ import useAxiosSecure from "./useAxiosSecure";
 
 const useRole = () => {
     const {user, loading} = useContext(AuthContext);
-    console.log(user)
+    // console.log(user)
     const axiosSecure = useAxiosSecure();
     // const [role, setRole] = useState('');
     const {data : role = '', isPending} = useQuery({
