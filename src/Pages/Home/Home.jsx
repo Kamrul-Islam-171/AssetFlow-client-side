@@ -1,3 +1,5 @@
+import MonthlyRequest from "../../Compnents/EmployeComponents/MonthlyRequest";
+import MyPendingRequest from "../../Compnents/EmployeComponents/MyPendingRequest";
 import About from "../../Compnents/NormalHomeComponents/About";
 import Bannar from "../../Compnents/NormalHomeComponents/Bannar";
 import PackageSection from "../../Compnents/NormalHomeComponents/PackageSection";
@@ -11,6 +13,8 @@ const Home = () => {
     return (
         <div>
             <Bannar></Bannar>
+            <MyPendingRequest></MyPendingRequest>
+            <MonthlyRequest></MonthlyRequest>
             <About></About>
             <PackageSection></PackageSection>
         </div>
