@@ -8,6 +8,7 @@ import NoData from "../../Compnents/NoData/NoData";
 import { GrCaretNext } from "react-icons/gr";
 import { GrCaretPrevious } from "react-icons/gr";
 import { AuthContext } from "../../Provider/AuthProvider";
+import { Helmet } from "react-helmet-async";
 
 
 
@@ -89,6 +90,7 @@ const AssetList = () => {
     // console.log(search)
     return (
         <div className="container mx-auto">
+            <Helmet><title>Asset lists</title></Helmet>
             <div className="mt-16">
                 <form onSubmit={handleSearch} className="space-y-5">
                     <div className="flex justify-center" >
