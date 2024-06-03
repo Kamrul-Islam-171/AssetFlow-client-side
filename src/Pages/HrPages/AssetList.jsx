@@ -19,24 +19,25 @@ const AssetList = () => {
     const [sort, setSort] = useState(false);
     const [available, setAvailable] = useState('');
     const [page, setPage] = useState(1);
-    const [limit] = useState(4);
+    const [limit] = useState(10);
     const [count, setCount] = useState(0);
     const [currentPage, setCurrentPage] = useState(1);
-    const itemsPerpage = 4;
+    const itemsPerpage = 10;
     const numberOfPages = Math.ceil(count / itemsPerpage);
     const pages = [];
+    const [isDeleted, setisDeleted] = useState(false)
     for(let x = 1; x <= numberOfPages; x++) pages.push(x);
     console.log(pages)
 
     useEffect(() => {
         axiosSecure.get(`/assetsCount/${user?.email}?search=${search}&returnOrNot=${returnAble}&sortData=${sort ? 'asc' : 'dsc'}&available=${available}`)
             .then(res => {
-                // console.log('count = ', res.data.count)
+                // console.log('countbyme = ', res.data.count)
                 setCount(res.data.count);
                 
             })
 
-    }, [axiosSecure, search, returnAble, sort, available, user?.email])
+    }, [axiosSecure, search, returnAble, sort, available, user?.email, isDeleted])
     console.log('curn = ', count)
    
 
@@ -51,6 +52,7 @@ const AssetList = () => {
             return data;
         }
     })
+    // console.log('my new data', assets)
 
     const handleSearch = async (e) => {
         e.preventDefault();
@@ -125,8 +127,8 @@ const AssetList = () => {
 
             <div className="mt-10">
                 {
-                    assets?.length > 0 ? <>
-                        <AssetTable assets={assets}></AssetTable>
+                    assets?.length > 0 && count > 0  ? <>
+                        <AssetTable assets={assets} isDeleted={isDeleted} setisDeleted={setisDeleted} refetch={refetch} page={page} setPage={setPage} currentPage={currentPage} setCurrentPage={setCurrentPage} count={count}></AssetTable>
                         <div className="flex justify-center items-center mt-5">
                             <button onClick={() => handlePageChange(page - 1)} disabled={page === 1} className="btn mr-2"><GrCaretPrevious /></button>
                             {/* <p>{currentPage}</p> */}
@@ -138,7 +140,7 @@ const AssetList = () => {
                                     }} key={pageNo} className={`btn px-5 border-0 ${currentPage === pageNo ? 'bg-secondary-color text-white' : 'text-black'}   `}>{pageNo}</button>)
                                 }
                             </span>
-                            <button onClick={() => handlePageChange(page + 1)} disabled={assets?.length < limit} className="btn ml-2"><GrCaretNext /></button>
+                            <button onClick={() => handlePageChange(page + 1)} disabled={ currentPage === pages.length} className="btn ml-2"><GrCaretNext /></button>
                         </div>
                     </> : <NoData></NoData>
                 }

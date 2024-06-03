@@ -9,6 +9,7 @@ import NoData from "../../Compnents/NoData/NoData";
 import { GrCaretNext } from "react-icons/gr";
 import { GrCaretPrevious } from "react-icons/gr";
 import { AuthContext } from "../../Provider/AuthProvider";
+import EmployeeAssetTable from "../../Compnents/EmployeComponents/EmployeeAssetTable";
 const RequestAsset = () => {
     const {user, loading} = useContext(AuthContext);
     const [search, setSearch] = useState('');
@@ -17,10 +18,10 @@ const RequestAsset = () => {
     const [sort, setSort] = useState(false);
     const [available, setAvailable] = useState('');
     const [page, setPage] = useState(1);
-    const [limit] = useState(4);
+    const [limit] = useState(10);
     const [count, setCount] = useState(0);
     const [currentPage, setCurrentPage] = useState(1);
-    const itemsPerpage = 4;
+    const itemsPerpage = 10;
     const numberOfPages = Math.ceil(count / itemsPerpage);
     const pages = [];
     for(let x = 1; x <= numberOfPages; x++) pages.push(x);
@@ -124,7 +125,7 @@ const RequestAsset = () => {
             <div className="mt-10">
                 {
                     assets?.length > 0 ? <>
-                        <AssetTable assets={assets}></AssetTable>
+                        <EmployeeAssetTable assets={assets}></EmployeeAssetTable>
                         <div className="flex justify-center items-center mt-5">
                             <button onClick={() => handlePageChange(page - 1)} disabled={page === 1} className="btn mr-2"><GrCaretPrevious /></button>
                             {/* <p>{currentPage}</p> */}
@@ -136,7 +137,7 @@ const RequestAsset = () => {
                                     }} key={pageNo} className={`btn px-5 border-0 ${currentPage === pageNo ? 'bg-secondary-color text-white' : 'text-black'}   `}>{pageNo}</button>)
                                 }
                             </span>
-                            <button onClick={() => handlePageChange(page + 1)} disabled={assets?.length < limit} className="btn ml-2"><GrCaretNext /></button>
+                            <button onClick={() => handlePageChange(page + 1)} disabled={currentPage === pages.length} className="btn ml-2"><GrCaretNext /></button>
                         </div>
                     </> : <NoData></NoData>
                 }
