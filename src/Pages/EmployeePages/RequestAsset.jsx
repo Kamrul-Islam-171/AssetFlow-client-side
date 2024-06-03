@@ -1,3 +1,4 @@
+
 import { useContext, useEffect, useState } from "react";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import AssetTable from "../../Compnents/HrComponents/AssetTable";
@@ -8,10 +9,7 @@ import NoData from "../../Compnents/NoData/NoData";
 import { GrCaretNext } from "react-icons/gr";
 import { GrCaretPrevious } from "react-icons/gr";
 import { AuthContext } from "../../Provider/AuthProvider";
-
-
-
-const AssetList = () => {
+const RequestAsset = () => {
     const {user, loading} = useContext(AuthContext);
     const [search, setSearch] = useState('');
     const axiosSecure = useAxiosSecure();
@@ -29,7 +27,7 @@ const AssetList = () => {
     console.log(pages)
 
     useEffect(() => {
-        axiosSecure.get(`/assetsCount/${user?.email}?search=${search}&returnOrNot=${returnAble}&sortData=${sort ? 'asc' : 'dsc'}&available=${available}`)
+        axiosSecure.get(`/assetsCountForEmployee/${user?.email}?search=${search}&returnOrNot=${returnAble}&sortData=${sort ? 'asc' : 'dsc'}&available=${available}`)
             .then(res => {
                 // console.log('count = ', res.data.count)
                 setCount(res.data.count);
@@ -39,14 +37,15 @@ const AssetList = () => {
     }, [axiosSecure, search, returnAble, sort, available, user?.email])
     console.log('curn = ', count)
    
+   
 
 
     const { data: assets = [], isLoading, refetch } = useQuery({
-        queryKey: ['assets', search, returnAble, sort, available, page, limit, user?.email],
+        queryKey: ['assetsForEmployee', search, returnAble, sort, available, page, limit, user?.email],
         enabled:!loading && !!user?.email,
         queryFn: async () => {
 
-            const { data } = await axiosSecure.get(`/assets/${user?.email}?search=${search}&returnOrNot=${returnAble}&sortData=${sort ? 'asc' : 'dsc'}&available=${available}&page=${page}&limit=${limit}`);
+            const { data } = await axiosSecure.get(`/assetsForEmployee/${user?.email}?search=${search}&returnOrNot=${returnAble}&sortData=${sort ? 'asc' : 'dsc'}&available=${available}&page=${page}&limit=${limit}`);
             
             return data;
         }
@@ -81,10 +80,9 @@ const AssetList = () => {
 
         // refetch()
     }
-    if (isLoading || loading) {
+    if (isLoading) {
         return <LoadingSpinner></LoadingSpinner>
     }
-    // console.log(search)
     return (
         <div className="container mx-auto">
             <div className="mt-16">
@@ -149,4 +147,4 @@ const AssetList = () => {
     );
 };
 
-export default AssetList;
+export default RequestAsset;

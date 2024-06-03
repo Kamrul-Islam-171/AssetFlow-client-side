@@ -5,6 +5,7 @@ import toast from "react-hot-toast";
 import NormalNav from "../../NomarLavlinks/NormalNav";
 import useRole from "../../../Hooks/useRole";
 import HrNavlinks from "../../HrNavLinks/HrNavlinks";
+import EmployeeNavlinks from "../../EmployeeNavlinks/EmployeeNavlinks";
 
 
 
@@ -20,6 +21,9 @@ const Navbar = () => {
             }
             {
                 role === 'HR' && <HrNavlinks></HrNavlinks>
+            }
+            {
+                role === 'employee' && <EmployeeNavlinks></EmployeeNavlinks>
             }
         </div>
 
@@ -53,6 +57,9 @@ const Navbar = () => {
                         }
                         {
                             role === 'HR' && <p>HR</p>
+                        }
+                        {
+                            role === 'employee' && <p>Employee</p>
                         }
                     </a>
                 </div>

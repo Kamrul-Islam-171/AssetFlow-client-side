@@ -18,6 +18,7 @@ import Home from './Pages/Home/Home.jsx';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import AddAsset from './Pages/HrPages/AddAsset.jsx';
 import AssetList from './Pages/HrPages/AssetList.jsx';
+import RequestAsset from './Pages/EmployeePages/RequestAsset.jsx';
 
 const queryClient = new QueryClient()
 
@@ -46,6 +47,10 @@ const router = createBrowserRouter([
       {
         path:'/asset-list',
         element:<AssetList></AssetList>
+      },
+      {
+        path:'/request-asset',
+        element:<RequestAsset></RequestAsset>
       }
   
     ]

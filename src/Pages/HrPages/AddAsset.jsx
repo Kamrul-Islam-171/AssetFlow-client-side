@@ -1,10 +1,13 @@
 import { Helmet } from "react-helmet-async";
 import toast from "react-hot-toast";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
+import { useContext } from "react";
+import { AuthContext } from "../../Provider/AuthProvider";
 
 
 const AddAsset = () => {
     const axiosSecure = useAxiosSecure();
+    const {user} = useContext(AuthContext);
     const handleSubmit = async (e) => {
         e.preventDefault();
         const form = e.target;
@@ -13,7 +16,7 @@ const AddAsset = () => {
         const Quantity = parseInt(form.quantity.value);
 
         const ProductInfo = {
-            ProductName, ProductType, Quantity, Date: new Date().toLocaleDateString()
+            ProductName, ProductType, Quantity, Date: new Date().toLocaleDateString(), email : user?.email
         }
 
         try {
