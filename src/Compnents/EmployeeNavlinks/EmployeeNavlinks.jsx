@@ -19,11 +19,11 @@ const EmployeeNavlinks = () => {
                         ? 'text-primary-color border-b-2 border-primary-color'
                         : 'text-black'
                 }>Request an Asset</NavLink>
-                {/* <NavLink to={'/asset-list'} className={({ isActive }) =>
+                <NavLink to={'/my-request-assets'} className={({ isActive }) =>
                     isActive
                         ? 'text-primary-color border-b-2 border-primary-color'
                         : 'text-black'
-                }>Asset Lists</NavLink> */}
+                }>My Requested Asstes</NavLink>
             </div>
         </div>
     );

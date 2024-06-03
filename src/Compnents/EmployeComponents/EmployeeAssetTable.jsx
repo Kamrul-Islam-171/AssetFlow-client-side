@@ -28,6 +28,7 @@ const EmployeeAssetTable = ({ assets }) => {
         const modalInfo = {
             HrEmail : asset?.email,
             RequestDate : new Date(),
+            ApprovalDate : '',
             RequestAssetId : asset?._id,
             Request:'pending',
             email : user?.email,

@@ -20,6 +20,7 @@ import AddAsset from './Pages/HrPages/AddAsset.jsx';
 import AssetList from './Pages/HrPages/AssetList.jsx';
 import RequestAsset from './Pages/EmployeePages/RequestAsset.jsx';
 import UpdateAsset from './Compnents/HrComponents/UpdateAsset.jsx';
+import MyRequestedAsset from './Compnents/EmployeComponents/MyRequestedAsset.jsx';
 
 const queryClient = new QueryClient()
 
@@ -56,6 +57,10 @@ const router = createBrowserRouter([
       {
         path:'/asset-update/:id',
         element: <UpdateAsset></UpdateAsset>
+      },
+      {
+        path:'/my-request-assets',
+        element:<MyRequestedAsset></MyRequestedAsset>
       }
   
     ]
