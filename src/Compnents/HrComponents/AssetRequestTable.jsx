@@ -18,7 +18,7 @@ const AssetRequestTable = ({ assets, isDeleted, setisDeleted, count, refetch, pa
 
     // console.log(assets.length)
     const handleDelete = async (id) => {
-        // console.log(id)
+        console.log(id)
         Swal.fire({
             title: "Are you sure?",
             text: "You won't be able to revert this!",
@@ -26,26 +26,22 @@ const AssetRequestTable = ({ assets, isDeleted, setisDeleted, count, refetch, pa
             showCancelButton: true,
             confirmButtonColor: "#3085d6",
             cancelButtonColor: "#d33",
-            confirmButtonText: "Yes, delete it!"
+            confirmButtonText: "Yes, Reject it!"
         }).then(async (result) => {
             if (result.isConfirmed) {
-                // Swal.fire({
-                //     title: "Deleted!",
-                //     text: "Your file has been deleted.",
-                //     icon: "success"
-                // });
+               
                 try {
-                    await axiosSecure.delete(`/assetDelete/${id}`);
+                    await axiosSecure.delete(`/reject-asset/${id}`);
                     setisDeleted(!isDeleted)
                     refetch()
                     if (assets.length === 1 && currentPage > 1) {
                         setCurrentPage(Math.floor(count / 10))
                         setPage(Math.floor(count / 10))
                     }
-                    // console.log('i am count from table = ', count)
+                    
                     Swal.fire({
-                        title: "Deleted!",
-                        text: "Your file has been deleted.",
+                        title: "Rejected!",
+                        text: "You reject the asset.",
                         icon: "success"
                     });
 
