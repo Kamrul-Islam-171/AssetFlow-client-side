@@ -24,13 +24,14 @@ const EmployeeAssetTable = ({ assets }) => {
         
     }
     const handleRequestSubmit = async() => {
-        console.log('i am in');
+        // console.log('i am in');
         const modalInfo = {
             HrEmail : asset?.email,
             RequestDate : new Date(),
             ApprovalDate : '',
             RequestAssetId : asset?._id,
             Request:'pending',
+            RName : user?.displayName,
             email : user?.email,
             ProductName : asset?.ProductName,
             ProductType : asset?.ProductType,

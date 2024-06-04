@@ -117,9 +117,9 @@ const MyRequestedAsset = () => {
                 </div>
             </div>
 
-            <div className="flex justify-center mt-5">
+            {/* <div className="flex justify-center mt-5">
                 <button onClick={() => setSort(!sort)} className="btn bg-primary-color hover:bg-white hover:text-primary-color outline-none border-0 text-white">{sort ? 'High to Low' : 'Low to High'}</button>
-            </div>
+            </div> */}
 
             <div className="mt-10">
                 {

@@ -23,6 +23,11 @@ const HrNavlinks = () => {
                     ? 'text-primary-color border-b-2 border-primary-color'
                     : 'text-black'
             }>Asset Lists</NavLink>
+            <NavLink to={'/asset-request'} className={({ isActive }) =>
+                isActive
+                    ? 'text-primary-color border-b-2 border-primary-color'
+                    : 'text-black'
+            }>All Assets Request</NavLink>
         </div>
     );
 };
