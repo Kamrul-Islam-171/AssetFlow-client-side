@@ -10,6 +10,7 @@ import { format } from "date-fns";
 import { Link } from 'react-router-dom';
 import useAxiosSecure from '../../Hooks/useAxiosSecure';
 
+
 const AssetRequestTable = ({ assets, isDeleted, setisDeleted, count, refetch, page, setPage, currentPage, setCurrentPage }) => {
     const axiosSecure = useAxiosSecure();
 
@@ -59,6 +60,31 @@ const AssetRequestTable = ({ assets, isDeleted, setisDeleted, count, refetch, pa
 
     }
 
+    const handleApprove = async (item) => {
+        console.log('item decre = ',item.RequestAssetId);
+        try {
+            // decrease quantity
+            await axiosSecure.patch(`/approval-decrease/${item.RequestAssetId}`);
+            // status update = pending->approve
+            console.log(item._id)
+            await axiosSecure.patch(`/status-update/${item._id}`)
+            refetch(); //ui update
+            setisDeleted(!isDeleted);
+            if (assets.length === 1 && currentPage > 1) {
+                setCurrentPage(Math.floor(count / 10))
+                setPage(Math.floor(count / 10))
+            }
+            toast.success('Request approved')
+
+
+
+        } catch (error) {
+            console.log(error);
+            toast.error(error.message)
+        }
+
+    }
+
 
     return (
         <div>
@@ -92,7 +118,7 @@ const AssetRequestTable = ({ assets, isDeleted, setisDeleted, count, refetch, pa
                                 <td>{format(item.RequestDate, "MM/dd/yyyy")}</td>
                                 <td>not approved</td>
                                 <td>{item.Request}</td>
-                                <td><button  className="btn hover:text-primary-color hover:bg-white bg-primary-color border-0 text-white">approve</button></td>
+                                <td><button onClick={() => handleApprove(item)} className="btn hover:text-primary-color hover:bg-white bg-primary-color border-0 text-white">approve</button></td>
                                 {/* <td><Link to={`/asset-update/${item._id}`}><button 
                                     className="btn hover:text-primary-color hover:bg-white bg-primary-color border-0 text-white">Update</button></Link></td> */}
                                 <td><button onClick={() => handleDelete(item._id)} className="btn hover:text-primary-color hover:bg-white bg-primary-color border-0 text-white">Reject</button></td>
