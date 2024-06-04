@@ -16,7 +16,8 @@ const AddAsset = () => {
         const Quantity = parseInt(form.quantity.value);
 
         const ProductInfo = {
-            ProductName, ProductType, Quantity, Date: new Date().toLocaleDateString(), email : user?.email
+            ProductName, ProductType, Quantity, Date: new Date().toLocaleDateString(), email : user?.email,
+            RequestCount : 0
         }
 
         try {

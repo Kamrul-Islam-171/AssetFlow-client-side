@@ -23,7 +23,7 @@ const EmployeeAssetTable = ({ assets }) => {
         setAsset(item);
         
     }
-    const handleRequestSubmit = async() => {
+    const handleRequestSubmit = async(item) => {
         // console.log('i am in');
         const modalInfo = {
             HrEmail : asset?.email,
@@ -39,6 +39,7 @@ const EmployeeAssetTable = ({ assets }) => {
         }
 
         try {
+            await axiosSecure.patch(`/increase-request/${asset?._id}`);
             await axiosSecure.post('/asset-request', modalInfo);
             toast.success('Request submitted')
         } catch (error) {
@@ -99,7 +100,7 @@ const EmployeeAssetTable = ({ assets }) => {
                                 <form method="dialog" >
                                     <input type="text" ref={inputtext}  className='border mr-20' />
                                     {/* if there is a button in form, it will close the modal */}
-                                    <button onClick={handleRequestSubmit}  className="btn">Request</button>
+                                    <button onClick={()=>handleRequestSubmit(asset)}  className="btn">Request</button>
                                 </form>
                             </div>
                         </div>
