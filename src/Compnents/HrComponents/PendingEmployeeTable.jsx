@@ -4,12 +4,13 @@ import { AuthContext } from "../../Provider/AuthProvider";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
 
-const PendingEmployeeTable = ({ item, refetch, refetch1, limitCount }) => {
+const PendingEmployeeTable = ({ item, refetch, refetch1, refetch2, limitCount, isDeleted, setisDeleted, currentPage, setPage, setCurrentPage, count }) => {
     // const [limit, setLimit] = useState(1);
     const [limit, setLimit] = useState(limitCount?.employeeLimit);
     const [arr, setArr] = useState(Array(item.length).fill(false));
     const { user, loading } = useContext(AuthContext);
     const axiosSecure = useAxiosSecure();
+    const [slectedCount, isSelectedCount] = useState(0);
 
     console.log(arr);
     console.log(limit)
@@ -24,9 +25,11 @@ const PendingEmployeeTable = ({ item, refetch, refetch1, limitCount }) => {
             }
             setLimit(limit - 1);
             arr[idx] = e.target.checked;
+            isSelectedCount(slectedCount - 1);
         }
         else if (arr[idx] && !e.target.checked) {
             setLimit(limit + 1);
+            isSelectedCount(slectedCount + 1);
             arr[idx] = e.target.checked
         }
     }
@@ -41,11 +44,18 @@ const PendingEmployeeTable = ({ item, refetch, refetch1, limitCount }) => {
         })
         // console.log(selectedEmployee)
         try {
-            await axiosSecure.put(`/add-selected-employee/${user?.email}`, {selectedEmployee, newLimit});
+            await axiosSecure.put(`/add-selected-employee/${user?.email}`, { selectedEmployee, newLimit });
             // await axiosSecure.patch(`/update-employee-status/${user?.email}`);
             toast.success('Selected Employee add Under Your company')
+            setisDeleted(!isDeleted)
             refetch();
             refetch1();
+            refetch2();
+            if (item.length === 1 && currentPage > 1) {
+                setCurrentPage(Math.floor(count / 10))
+                setPage(Math.floor(count / 10))
+            }
+
         } catch (error) {
             console.log(error);
             toast.error('Something Wrong')
@@ -109,7 +119,7 @@ const PendingEmployeeTable = ({ item, refetch, refetch1, limitCount }) => {
 
             </div>
 
-            <div className="flex justify-center mt-10"><button onClick={handleSelected} className="btn bg-primary-color text-white border-0 hover:bg-secondary-color">Add Selected Employee</button></div>
+            <div className="flex justify-center mt-10"><button disabled={!slectedCount} onClick={handleSelected} className="btn bg-primary-color text-white border-0 hover:bg-secondary-color">Add Selected Employee</button></div>
 
         </div>
     );
