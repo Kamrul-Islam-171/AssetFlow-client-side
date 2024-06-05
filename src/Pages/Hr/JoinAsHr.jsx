@@ -25,11 +25,19 @@ const JoinAsHr = () => {
         }
         console.log(info)
 
-        
+
         try {
             await createUser(email, password);
             await updateUserProfile(name, '');
             await axios.post(`${import.meta.env.VITE_url}/hr`, info);
+            const currentUser = {
+                email: email,
+                name: name,
+                role: 'HR',
+                status: 'pending',
+                employeeLimit : parseInt(packageData)
+            }
+            await axios.put(`${import.meta.env.VITE_url}/username-image-update`, currentUser);
 
             toast.success('Login successfull')
             navigate('/')
@@ -39,7 +47,7 @@ const JoinAsHr = () => {
         }
 
     }
-   
+
     return (
         <div className="container mx-auto flex flex-col justify-center min-h-screen space-y-10">
             <Helmet><title>Join as HR</title></Helmet>
@@ -93,9 +101,9 @@ const JoinAsHr = () => {
                         <div>
                             <select name="package" className="rounded-lg outline-none px-5 py-2 w-full">
                                 <option value="">Select a package</option>
-                                <option value="five">5 members for $5</option>
-                                <option value="eight">10 members for $8</option>
-                                <option value="fifteen">20 members for $15</option>
+                                <option value="5">5 members for $5</option>
+                                <option value="8">10 members for $8</option>
+                                <option value="15">20 members for $15</option>
                             </select>
                         </div>
                     </div>
@@ -106,7 +114,7 @@ const JoinAsHr = () => {
 
                 </form>
 
-                
+
             </div>
         </div>
     );

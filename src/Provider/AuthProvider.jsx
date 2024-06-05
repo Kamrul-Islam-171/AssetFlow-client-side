@@ -69,6 +69,8 @@ const AuthProvider = ({ children }) => {
   const saveUser = async (user) => {
     const currentUser = {
       email: user?.email,
+      name:user?.displayName,
+      image:user?.photoURL,
       role: 'employee',
       status: 'pending'
     }
@@ -104,7 +106,7 @@ const AuthProvider = ({ children }) => {
     const unsubscribe = onAuthStateChanged(auth, currentUser => {
       setUser(currentUser)
       // setLoading(false)
-      // console.log(currentUser)
+      console.log(currentUser)
       if (currentUser) {
         // getToken(currentUser.email)
         const userEmail = currentUser?.email || user?.email;

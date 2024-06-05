@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 const EmployeeNavlinks = () => {
     return (
         <div>
-            <div className="flex gap-5">
+            <div className="flex flex-col lg:flex-row gap-5">
                 <NavLink to="/"
                     className={({ isActive }) =>
                         isActive

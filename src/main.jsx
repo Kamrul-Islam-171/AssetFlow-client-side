@@ -22,6 +22,7 @@ import RequestAsset from './Pages/EmployeePages/RequestAsset.jsx';
 import UpdateAsset from './Compnents/HrComponents/UpdateAsset.jsx';
 import MyRequestedAsset from './Compnents/EmployeComponents/MyRequestedAsset.jsx';
 import AllRequests from './Pages/HrPages/AllRequests.jsx';
+import AddEmployee from './Pages/HrPages/AddEmployee.jsx';
 
 const queryClient = new QueryClient()
 
@@ -66,6 +67,10 @@ const router = createBrowserRouter([
       {
         path:'/asset-request',
         element:<AllRequests></AllRequests>
+      },
+      {
+        path:'/add-employee',
+        element:<AddEmployee></AddEmployee>
       }
   
     ]

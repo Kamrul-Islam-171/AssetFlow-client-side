@@ -7,13 +7,14 @@ import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Provider/AuthProvider";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
+import axios from "axios";
 
 const JoinAsEmployee = () => {
     // const [startDate, setStartDate] = useState(new Date());
-    const { signInWithGoogle, createUser, updateUserProfile} = useContext(AuthContext);
+    const { signInWithGoogle, createUser, updateUserProfile } = useContext(AuthContext);
     const navigate = useNavigate();
 
-    const axiosSecure= useAxiosSecure();
+    const axiosSecure = useAxiosSecure();
     // const [data, setData] = useState('');
 
     // useEffect(() => {
@@ -34,14 +35,25 @@ const JoinAsEmployee = () => {
         const email = e.target.email.value;
         const password = e.target.password.value;
         const birthDate = e.target.date.value;
+        const image = e.target.photoUrl.value;
         const employeeInfo = {
-            name, email, birthDate, position : 'employee', status : 'pending' 
+            name, email, birthDate, position: 'employee', status: 'pending', image
         }
         // console.log(employeeInfo);
         try {
             await createUser(email, password);
-            await updateUserProfile(name, '')
-            
+            await updateUserProfile(name, image);
+
+            const currentUser = {
+                email: email,
+                name: name,
+                image: image,
+                role: 'employee',
+                status: 'pending'
+            }
+            await axios.put(`${import.meta.env.VITE_url}/username-image-update`, currentUser);
+
+
             toast.success('Login successfull')
             navigate('/')
         } catch (error) {
@@ -54,7 +66,7 @@ const JoinAsEmployee = () => {
         try {
             await signInWithGoogle();
             toast.success('Login successfull')
-           
+
             navigate('/')
         } catch (error) {
             console.log(error)
@@ -71,6 +83,12 @@ const JoinAsEmployee = () => {
                         <label htmlFor="" className=" text-xl">Full Name</label>
                         <div className="">
                             <input placeholder="Enter Your Name" className="rounded-lg outline-none px-5 py-2 w-full" type="text" name="name" id="" required={true} />
+                        </div>
+                    </div>
+                    <div className="space-y-2">
+                        <label htmlFor="" className=" text-xl">Photo URL</label>
+                        <div className="">
+                            <input placeholder="Enter Your Photo URL" className="rounded-lg outline-none px-5 py-2 w-full" type="text" name="photoUrl" id="" required={true} />
                         </div>
                     </div>
                     <div className="space-y-2">

@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 
 const HrNavlinks = () => {
     return (
-        <div className="flex gap-5">
+        <div className="flex flex-col lg:flex-row gap-5">
             <NavLink to="/"
                 className={({ isActive }) =>
                     isActive
@@ -28,6 +28,11 @@ const HrNavlinks = () => {
                     ? 'text-primary-color border-b-2 border-primary-color'
                     : 'text-black'
             }>All Assets Request</NavLink>
+            <NavLink to={'/add-employee'} className={({ isActive }) =>
+                isActive
+                    ? 'text-primary-color border-b-2 border-primary-color'
+                    : 'text-black'
+            }>Add Employee</NavLink>
         </div>
     );
 };
