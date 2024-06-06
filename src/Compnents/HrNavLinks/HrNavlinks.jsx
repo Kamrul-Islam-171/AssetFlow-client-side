@@ -33,6 +33,11 @@ const HrNavlinks = () => {
                     ? 'text-primary-color border-b-2 border-primary-color'
                     : 'text-black'
             }>Add Employee</NavLink>
+            <NavLink to={'/my-employee-list'} className={({ isActive }) =>
+                isActive
+                    ? 'text-primary-color border-b-2 border-primary-color'
+                    : 'text-black'
+            }>My Employee List</NavLink>
         </div>
     );
 };

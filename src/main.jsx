@@ -23,6 +23,7 @@ import UpdateAsset from './Compnents/HrComponents/UpdateAsset.jsx';
 import MyRequestedAsset from './Compnents/EmployeComponents/MyRequestedAsset.jsx';
 import AllRequests from './Pages/HrPages/AllRequests.jsx';
 import AddEmployee from './Pages/HrPages/AddEmployee.jsx';
+import MyEmployeeList from './Pages/HrPages/MyEmployeeList.jsx';
 
 const queryClient = new QueryClient()
 
@@ -71,6 +72,10 @@ const router = createBrowserRouter([
       {
         path:'/add-employee',
         element:<AddEmployee></AddEmployee>
+      },
+      {
+        path:'/my-employee-list',
+        element:<MyEmployeeList></MyEmployeeList>
       }
   
     ]
