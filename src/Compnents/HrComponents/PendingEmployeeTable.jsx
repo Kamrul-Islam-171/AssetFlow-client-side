@@ -13,7 +13,7 @@ const PendingEmployeeTable = ({ item, refetch, refetch1, refetch2, limitCount, i
     const [slectedCount, isSelectedCount] = useState(0);
 
     console.log(arr);
-    console.log(limit)
+    console.log('lim = ', limit)
 
     const handleLimit = (e, id, idx) => {
 
@@ -46,7 +46,7 @@ const PendingEmployeeTable = ({ item, refetch, refetch1, refetch2, limitCount, i
         try {
             await axiosSecure.put(`/add-selected-employee/${user?.email}`, { selectedEmployee, newLimit });
             // await axiosSecure.patch(`/update-employee-status/${user?.email}`);
-            toast.success('Selected Employee add Under Your company')
+            toast.success('Selected Employee are added  Under Your company')
             setisDeleted(!isDeleted)
             refetch();
             refetch1();
@@ -62,6 +62,47 @@ const PendingEmployeeTable = ({ item, refetch, refetch1, refetch2, limitCount, i
         }
 
 
+    }
+
+    const handleSingleEmployeeAdd = async (employee) => {
+
+
+
+        // console.log(selectedEmployee);
+        try {
+            const { data } = await axiosSecure.put(`/add-an-employee/${user?.email}`, { email: employee?.email });
+            console.log(data);
+            toast.success('An Employee is added Under Your company')
+            setisDeleted(!isDeleted)
+            refetch();
+            refetch1();
+            refetch2();
+            if (item.length === 1 && currentPage > 1) {
+                setCurrentPage(Math.floor(count / 10))
+                setPage(Math.floor(count / 10))
+            }
+        } catch (error) {
+            console.log(error);
+            toast.error('Something Wrong')
+        }
+
+        // try {
+        //     await axiosSecure.put(`/add-selected-employee/${user?.email}`, { selectedEmployee, newLimit });
+
+        //     toast.success('Selected Employee add Under Your company')
+        //     setisDeleted(!isDeleted)
+        //     refetch();
+        //     refetch1();
+        //     refetch2();
+        //     if (item.length === 1 && currentPage > 1) {
+        //         setCurrentPage(Math.floor(count / 10))
+        //         setPage(Math.floor(count / 10))
+        //     }
+
+        // } catch (error) {
+        //     console.log(error);
+        //     toast.error('Something Wrong')
+        // }
     }
     return (
         <div>
@@ -104,7 +145,7 @@ const PendingEmployeeTable = ({ item, refetch, refetch1, refetch2, limitCount, i
                                 </td>
                                 <td>Employee</td>
                                 <th>
-                                    <button className="btn bg-primary-color text-white border-0 hover:bg-secondary-color">Add</button>
+                                    <button onClick={() => handleSingleEmployeeAdd(employee)} className="btn bg-primary-color text-white border-0 hover:bg-secondary-color">Add</button>
                                 </th>
                             </tr>)
                         }
