@@ -25,6 +25,7 @@ import AllRequests from './Pages/HrPages/AllRequests.jsx';
 import AddEmployee from './Pages/HrPages/AddEmployee.jsx';
 import MyEmployeeList from './Pages/HrPages/MyEmployeeList.jsx';
 import Profile from './Pages/Profile/Profile.jsx';
+import MyTeam from './Pages/EmployeePages/MyTeam.jsx';
 
 const queryClient = new QueryClient()
 
@@ -81,6 +82,10 @@ const router = createBrowserRouter([
       {
         path:'/profile',
         element:<Profile></Profile>
+      },
+      {
+        path:'my-team',
+        element:<MyTeam></MyTeam>
       }
   
     ]

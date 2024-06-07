@@ -4,6 +4,7 @@ import MyProfile from "../../Compnents/Profile/MyProfile";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import LoadingSpinner from "../../Compnents/LoadingSpinner/LoadingSpinner";
+import { Helmet } from "react-helmet-async";
 
 
 const Profile = () => {
@@ -22,6 +23,7 @@ const Profile = () => {
     if(isLoading || loading) return <LoadingSpinner></LoadingSpinner>
     return (
         <div>
+            <Helmet><title>Profile</title></Helmet>
             <MyProfile userInfo={userInfo} refetch={refetch}></MyProfile>
         </div>
     );

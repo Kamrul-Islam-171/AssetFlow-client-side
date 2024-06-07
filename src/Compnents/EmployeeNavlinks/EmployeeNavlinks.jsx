@@ -24,6 +24,16 @@ const EmployeeNavlinks = () => {
                         ? 'text-primary-color border-b-2 border-primary-color'
                         : 'text-black'
                 }>My Requested Asstes</NavLink>
+                <NavLink to={'/my-team'} className={({ isActive }) =>
+                    isActive
+                        ? 'text-primary-color border-b-2 border-primary-color'
+                        : 'text-black'
+                }>My Team</NavLink>
+                <NavLink to={'/profile'} className={({ isActive }) =>
+                    isActive
+                        ? 'text-primary-color border-b-2 border-primary-color'
+                        : 'text-black'
+                }>Profile</NavLink>
             </div>
         </div>
     );
