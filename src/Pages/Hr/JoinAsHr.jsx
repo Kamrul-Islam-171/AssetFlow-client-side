@@ -20,21 +20,23 @@ const JoinAsHr = () => {
         const company = e.target.company.value;
         const companyLogo = e.target.companyLogo.value;
         const packageData = e.target.package.value;
+        const image = e.target.image.value;
         const info = {
-            name, email, birthDate, company, companyLogo, packageData
+            name, email, birthDate, company, companyLogo, packageData, image
         }
         console.log(info)
 
 
         try {
             await createUser(email, password);
-            await updateUserProfile(name, '');
+            await updateUserProfile(name, image);
             await axios.post(`${import.meta.env.VITE_url}/hr`, info);
             const currentUser = {
                 email: email,
                 name: name,
                 role: 'HR',
                 status: 'pending',
+                image,
                 employeeLimit : parseInt(packageData)
             }
             await axios.put(`${import.meta.env.VITE_url}/username-image-update`, currentUser);
@@ -58,6 +60,12 @@ const JoinAsHr = () => {
                         <label htmlFor="" className=" text-xl">Full Name</label>
                         <div className="">
                             <input placeholder="Enter Your Name" className="rounded-lg outline-none px-5 py-2 w-full" type="text" name="name" id="" required={true} />
+                        </div>
+                    </div>
+                    <div className="space-y-2">
+                        <label htmlFor="" className=" text-xl">Photo URL</label>
+                        <div className="">
+                            <input placeholder="URL" className="rounded-lg outline-none px-5 py-2 w-full" type="text" name="image" id="" required={true} />
                         </div>
                     </div>
                     <div className="space-y-2">

@@ -38,6 +38,11 @@ const HrNavlinks = () => {
                     ? 'text-primary-color border-b-2 border-primary-color'
                     : 'text-black'
             }>My Employee List</NavLink>
+            <NavLink to={'/profile'} className={({ isActive }) =>
+                isActive
+                    ? 'text-primary-color border-b-2 border-primary-color'
+                    : 'text-black'
+            }>Profile</NavLink>
         </div>
     );
 };
