@@ -1,5 +1,7 @@
+import Events from "../../Compnents/EmployeComponents/Events";
 import MonthlyRequest from "../../Compnents/EmployeComponents/MonthlyRequest";
 import MyPendingRequest from "../../Compnents/EmployeComponents/MyPendingRequest";
+import Notice from "../../Compnents/EmployeComponents/Notice";
 import AssetPiceChart from "../../Compnents/HrComponents/AssetPiceChart";
 import ChartforYour from "../../Compnents/HrComponents/ChartforYour";
 import FivePendingRequests from "../../Compnents/HrComponents/FivePendingRequests";
@@ -30,6 +32,9 @@ const Home = () => {
             <ChartforYour></ChartforYour>
             <About></About>
             <PackageSection></PackageSection>
+
+            <Events></Events>
+            <Notice></Notice>
             
             
         </div>

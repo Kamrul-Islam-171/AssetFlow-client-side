@@ -3,13 +3,17 @@ import MyModal from './MyModal';
 import toast from 'react-hot-toast';
 import useAxiosSecure from '../../Hooks/useAxiosSecure';
 import { AuthContext } from '../../Provider/AuthProvider';
+import RequestModal from '../Modal/RequestModal';
 
 const EmployeeAssetTable = ({ assets }) => {
     let [isOpen, setIsOpen] = useState(false);
     let [asset, setAsset] = useState(null);
-    const {user} = useContext(AuthContext)
+    const [showModal, setShowModal] = useState(false);
+    const { user } = useContext(AuthContext)
     const inputtext = useRef();
     const axiosSecure = useAxiosSecure();
+
+    const [info, setInfo] = useState(null);
 
     // function open() {
     //     setIsOpen(true)
@@ -21,21 +25,21 @@ const EmployeeAssetTable = ({ assets }) => {
     const handleRequest = (item) => {
         setIsOpen(true)
         setAsset(item);
-        
+
     }
-    const handleRequestSubmit = async(item) => {
+    const handleRequestSubmit = async (item) => {
         // console.log('i am in');
         const modalInfo = {
-            HrEmail : asset?.email,
-            RequestDate : new Date(),
-            ApprovalDate : '',
-            RequestAssetId : asset?._id,
-            Request:'pending',
-            RName : user?.displayName,
-            email : user?.email,
-            ProductName : asset?.ProductName,
-            ProductType : asset?.ProductType,
-            Quantity : asset?.Quantity
+            HrEmail: asset?.email,
+            RequestDate: new Date(),
+            ApprovalDate: '',
+            RequestAssetId: asset?._id,
+            Request: 'pending',
+            RName: user?.displayName,
+            email: user?.email,
+            ProductName: asset?.ProductName,
+            ProductType: asset?.ProductType,
+            Quantity: asset?.Quantity
         }
 
         try {
@@ -46,15 +50,16 @@ const EmployeeAssetTable = ({ assets }) => {
             console.log(error);
             toast.error(error.message);
         }
-        
-        // console.log(modalInfo)
-// 
+
+       
     }
-    // const hell = e => {
-    //     e.preventDefault();
-    //     console.log(e.target[0].value);
-    //     console.log('i am k')
-    // }
+    const toggleModal = (item) => {
+        setInfo(item)
+
+        setShowModal(!showModal);
+    };
+    
+  
     return (
         <div>
             <div className="overflow-x-auto">
@@ -78,11 +83,21 @@ const EmployeeAssetTable = ({ assets }) => {
                                 <td>{item.ProductName}</td>
                                 <td>{item.ProductType}</td>
                                 <td>{item.Quantity > 0 ? 'Available' : 'Out Of Stcok'}</td>
-                                <td><button onClick={() => {
+                                {/* <td><button onClick={() => {
                                     handleRequest(item)
                                     document.getElementById('my_modal_5').showModal();
-                                }} disabled={!item.Quantity} className="btn hover:text-primary-color hover:bg-white bg-primary-color border-0 text-white">Request</button></td>
-
+                                }} disabled={!item.Quantity} className="btn hover:text-primary-color hover:bg-white bg-primary-color border-0 text-white">Request</button></td> */}
+                                <td>
+                                    <button
+                                        onClick={
+                                           
+                                           ()=> toggleModal(item)
+                                        }
+                                        className="px-4 py-2 bg-primary-color text-white rounded hover:bg-secondary-color"
+                                    >
+                                        Request
+                                    </button>
+                                </td>
                             </tr>)
                         }
 
@@ -98,15 +113,17 @@ const EmployeeAssetTable = ({ assets }) => {
                             <p className="py-4">Press ESC key or click the button below to close</p>
                             <div className="modal-action">
                                 <form method="dialog" >
-                                    <input type="text" ref={inputtext}  className='border mr-20' />
+                                    <input type="text" ref={inputtext} className='border mr-20' />
                                     {/* if there is a button in form, it will close the modal */}
-                                    <button onClick={()=>handleRequestSubmit(asset)}  className="btn">Request</button>
+                                    <button onClick={() => handleRequestSubmit(asset)} className="btn">Request</button>
                                 </form>
                             </div>
                         </div>
                     </dialog>
                 }
             </div>
+
+            <RequestModal show={showModal} onClose={toggleModal} info={info} />
         </div>
     );
 };

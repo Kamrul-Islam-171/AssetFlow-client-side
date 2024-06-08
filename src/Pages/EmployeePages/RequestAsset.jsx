@@ -10,9 +10,11 @@ import { GrCaretNext } from "react-icons/gr";
 import { GrCaretPrevious } from "react-icons/gr";
 import { AuthContext } from "../../Provider/AuthProvider";
 import EmployeeAssetTable from "../../Compnents/EmployeComponents/EmployeeAssetTable";
+
 const RequestAsset = () => {
-    const {user, loading} = useContext(AuthContext);
+    const { user, loading } = useContext(AuthContext);
     const [search, setSearch] = useState('');
+    // const [showModal, setShowModal] = useState(false);
     const axiosSecure = useAxiosSecure();
     const [returnAble, setReturnAble] = useState('');
     const [sort, setSort] = useState(false);
@@ -24,7 +26,7 @@ const RequestAsset = () => {
     const itemsPerpage = 10;
     const numberOfPages = Math.ceil(count / itemsPerpage);
     const pages = [];
-    for(let x = 1; x <= numberOfPages; x++) pages.push(x);
+    for (let x = 1; x <= numberOfPages; x++) pages.push(x);
     console.log(pages)
 
     useEffect(() => {
@@ -32,22 +34,22 @@ const RequestAsset = () => {
             .then(res => {
                 // console.log('count = ', res.data.count)
                 setCount(res.data.count);
-                
+
             })
 
     }, [axiosSecure, search, returnAble, sort, available, user?.email])
     console.log('curn = ', count)
-   
-   
+
+
 
 
     const { data: assets = [], isLoading, refetch } = useQuery({
         queryKey: ['assetsForEmployee', search, returnAble, sort, available, page, limit, user?.email],
-        enabled:!loading && !!user?.email,
+        enabled: !loading && !!user?.email,
         queryFn: async () => {
 
             const { data } = await axiosSecure.get(`/assetsForEmployee/${user?.email}?search=${search}&returnOrNot=${returnAble}&sortData=${sort ? 'asc' : 'dsc'}&available=${available}&page=${page}&limit=${limit}`);
-            
+
             return data;
         }
     })
@@ -59,6 +61,8 @@ const RequestAsset = () => {
         setPage(1);
         setCurrentPage(1)
     }
+
+
 
 
 
@@ -81,6 +85,9 @@ const RequestAsset = () => {
 
         // refetch()
     }
+    // const toggleModal = () => {
+    //     setShowModal(!showModal);
+    // };
     if (isLoading) {
         return <LoadingSpinner></LoadingSpinner>
     }
@@ -142,6 +149,8 @@ const RequestAsset = () => {
                     </> : <NoData></NoData>
                 }
             </div>
+
+            
 
 
         </div>

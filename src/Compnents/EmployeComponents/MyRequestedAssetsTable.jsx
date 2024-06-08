@@ -9,6 +9,7 @@ import { PDFDownloadLink} from '@react-pdf/renderer';
 import MyDocument from './MyDocument';
 import { useQuery } from '@tanstack/react-query';
 import LoadingSpinner from './../LoadingSpinner/LoadingSpinner';
+import { format, compareAsc } from "date-fns";
 
 
 const MyRequestedAssetsTable = ({ assets }) => {
@@ -92,8 +93,8 @@ const MyRequestedAssetsTable = ({ assets }) => {
                                 <th>{idx + 1}</th>
                                 <td>{item.ProductName}</td>
                                 <td>{item.ProductType}</td>
-                                <td>{item.RequestDate}</td>
-                                <td>{item.ApprovalDate ? item.ApprovalDate : 'pending'}</td>
+                                <td>{format(item.RequestDate, "MM/dd/yyyy")}</td>
+                                <td>{item.ApprovalDate ? format(item.ApprovalDate, "MM/dd/yyyy") : 'pending'}</td>
                                 <td>{item.Request}</td>
                                 <td>
                                     {item.Request === 'pending' && <button className='btn'>Cancel</button>}
