@@ -68,7 +68,7 @@ const Notice = () => {
                             <div className="space-y-3 h-[250px] md:h-[200px] lg:h-[200px] lg:w-1/2 flex flex-col justify-center items-center">
                                 <h1 className="text-2xl">New Employee Orientation</h1>
                                 <p>New Employee Orientation - June 25, 2024</p>
-                                <button className='bg-primary-color text-white py-2 px-4'>
+                                <button className='bg-primary-color hover:bg-secondary-color text-white py-2 px-4'>
                                     <PDFDownloadLink document={<MyDocument image={notice[0]?.image} />} fileName="example.pdf">
                                         {({ blob, url, loading, error }) =>
                                             loading ? 'Loading document...' : 'Details'
@@ -84,7 +84,7 @@ const Notice = () => {
                             <div className="space-y-3 h-[250px] md:h-[200px] lg:h-[200px] lg:w-1/2 flex flex-col justify-center items-center">
                                 <h1 className="text-2xl">Upcoming Security Training</h1>
                                 <p>Mandatory Security Training Session - November 25, 2024</p>
-                                <button className='bg-primary-color text-white py-2 px-4'>
+                                <button className='bg-primary-color hover:bg-secondary-color text-white py-2 px-4'>
                                 <PDFDownloadLink document={<MyDocument image={notice[1]?.image} />} fileName="example.pdf">
                                         {({ blob, url, loading, error }) =>
                                             loading ? 'Loading document...' : 'Details'
@@ -100,7 +100,7 @@ const Notice = () => {
                             <div className="space-y-3 h-[250px] md:h-[200px] lg:h-[200px] lg:w-1/2 flex flex-col justify-center items-center">
                                 <h1 className="text-2xl">Announcement</h1>
                                 <p>Office Renovation Announcement</p>
-                                <button className='bg-primary-color text-white py-2 px-4'>
+                                <button className='bg-primary-color hover:bg-secondary-color text-white py-2 px-4'>
                                 <PDFDownloadLink document={<MyDocument image={notice[2]?.image} />} fileName="example.pdf">
                                         {({ blob, url, loading, error }) =>
                                             loading ? 'Loading document...' : 'Details'

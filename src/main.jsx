@@ -26,6 +26,7 @@ import AddEmployee from './Pages/HrPages/AddEmployee.jsx';
 import MyEmployeeList from './Pages/HrPages/MyEmployeeList.jsx';
 import Profile from './Pages/Profile/Profile.jsx';
 import MyTeam from './Pages/EmployeePages/MyTeam.jsx';
+import Payment from './Pages/Payment/Payment.jsx';
 
 const queryClient = new QueryClient()
 
@@ -86,6 +87,10 @@ const router = createBrowserRouter([
       {
         path:'my-team',
         element:<MyTeam></MyTeam>
+      },
+      {
+        path:'/payment',
+        element:<Payment></Payment>
       }
   
     ]
