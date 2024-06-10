@@ -18,7 +18,7 @@ const MonthlyRequest = () => {
     if(isLoading || isLoading) return <LoadingSpinner></LoadingSpinner>
     return (
         <div>
-            <div className="container mx-auto">
+            <div className="container mx-auto mt-20 spcae-y-10">
                 <h1 className="text-4xl text-center mb-10">My Monthly Requests</h1>
                 <div className="overflow-x-auto">
                     <table className="table">

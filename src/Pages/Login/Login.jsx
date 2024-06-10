@@ -19,6 +19,7 @@ const Login = () => {
                 // console.log(result.user)
                 toast.success('Login successfull')
                 navigate('/')
+                window.location.reload();
 
             })
             .catch(error => {
@@ -32,6 +33,7 @@ const Login = () => {
             await signInWithGoogle();
             toast.success('Login successfull')
             navigate('/')
+            window.location.reload();
         } catch (error) {
             console.log(error)
             toast.error(error.message)

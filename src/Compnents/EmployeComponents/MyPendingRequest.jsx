@@ -18,7 +18,7 @@ const MyPendingRequest = () => {
     })
     if(isLoading || loading) return <LoadingSpinner></LoadingSpinner>
     return (
-        <div className="container mx-auto">
+        <div className="container mx-auto mt-20 space-y-10">
             <h1 className="text-4xl text-center mb-10">My Pending Requests</h1>
             <div className="overflow-x-auto">
                 <table className="table">

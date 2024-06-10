@@ -47,7 +47,7 @@ const Notice = () => {
     if (isLoading) return <LoadingSpinner></LoadingSpinner>
     console.log("notice = ", notice);
     return (
-        <div className='mt-16'>
+        <div className='mt-16 mb-10'>
             <h1 className='text-4xl text-center'>Notice</h1>
             <div className='mt-10 lg:mt-2'>
                 <Swiper
