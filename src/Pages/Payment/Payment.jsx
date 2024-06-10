@@ -5,6 +5,7 @@ import { useState } from "react";
 
 const Payment = () => {
     const [isModalOpen, setModalOpen] = useState(false);
+    const [amount, setAmount] = useState(0);
 
     const handlePay = () => {
         // Add your payment handling logic here
@@ -23,36 +24,49 @@ const Payment = () => {
                             <h1 className="text-center text-5xl text-secondary-color font-bold">$5</h1>
                             <p className="text-center text-gray-600 text-lg">Maximum 5 employees</p>
                         </div>
-                        <div className="flex justify-end p-5"><button className="btn hover:bg-yellow-600 bg-secondary-color text-white border-0 px-6">Pay</button></div>
+                        <div className="flex justify-end p-5"><button onClick={() => {
+                            setAmount(5)
+                            setModalOpen(true)
+                        }} className="btn hover:bg-yellow-600 bg-secondary-color text-white border-0 px-6">Pay</button></div>
                     </div>
                     <div className="shadow-2xl border-t-8 border-primary-color">
                         <div className="py-20 space-y-2">
                             <h1 className="text-center text-5xl text-primary-color font-bold">$8</h1>
                             <p className="text-center text-gray-600 text-lg">Maximum 10 employees</p>
                         </div>
-                        <div className="flex justify-end p-5"><button className="btn hover:bg-purple-900 bg-primary-color text-white border-0 px-6">Pay</button></div>
+                        <div className="flex justify-end p-5"><button onClick={() => {
+                            setAmount(8)
+                            setModalOpen(true)
+                        }} className="btn hover:bg-purple-900 bg-primary-color text-white border-0 px-6">Pay</button></div>
                     </div>
                     <div className="shadow-2xl border-t-8 border-secondary-color">
                         <div className="py-20 space-y-2">
                             <h1 className="text-center text-5xl text-secondary-color font-bold">$15</h1>
                             <p className="text-center text-gray-600 text-lg">Maximum 20 employees</p>
                         </div>
-                        <div className="flex justify-end p-5"><button className="btn hover:bg-yellow-600 bg-secondary-color text-white border-0 px-6">Pay</button></div>
+                        <div className="flex justify-end p-5"><button onClick={() => {
+                            setAmount(15)
+                            setModalOpen(true)
+                        }} className="btn hover:bg-yellow-600 bg-secondary-color text-white border-0 px-6">Pay</button></div>
                     </div>
                 </div>
             </div>
 
-            <button
-                onClick={() => setModalOpen(true)}
+            {/* <button
+                onClick={() => {
+                    setAmount(5)
+                    setModalOpen(true)
+                }}
                 className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
             >
                 Open Modal
-            </button>
+            </button> */}
 
             <ModalPayment
                 isOpen={isModalOpen}
                 onClose={() => setModalOpen(false)}
                 onPay={handlePay}
+                amount={amount}
             />
         </div>
     );

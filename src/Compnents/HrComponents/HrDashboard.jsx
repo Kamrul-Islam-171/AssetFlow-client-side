@@ -1,7 +1,8 @@
 import React from 'react';
 import toast from 'react-hot-toast';
+import { Link } from 'react-router-dom';
 
-const HrDashboard = ({limitCount, emplyeeCount}) => {
+const HrDashboard = ({ limitCount, emplyeeCount }) => {
     return (
         <div>
             <div className="stats stats-vertical lg:stats-horizontal shadow">
@@ -23,9 +24,10 @@ const HrDashboard = ({limitCount, emplyeeCount}) => {
                     <div className="stat-desc">You Can increase</div>
                 </div>
 
-                <button onClick={() => { toast.success('hello') }} className="stat  text-white hover:bg-secondary-color flex items-center bg-primary-color">
-                    Increase Limit
-                </button>
+                <Link className='stat' to={'/payment'}>
+                    <button onClick={() => { toast.success('hello') }} className="stat rounded-md  text-white hover:bg-secondary-color flex items-center bg-primary-color">
+                        Increase Limit
+                    </button></Link>
             </div>
         </div>
     );

@@ -35,14 +35,14 @@ const JoinAsHr = () => {
                 email: email,
                 name: name,
                 role: 'HR',
-                status: 'pending',
+                status: 'verified',
                 image,
-                employeeLimit : parseInt(packageData)
+                employeeLimit : parseInt(0)
             }
             await axios.put(`${import.meta.env.VITE_url}/username-image-update`, currentUser);
 
             toast.success('Login successfull')
-            navigate('/')
+            navigate('/payment')
         } catch (error) {
             console.log(error)
             toast.error(error.message)

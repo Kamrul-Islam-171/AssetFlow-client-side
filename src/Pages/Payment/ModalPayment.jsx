@@ -1,6 +1,13 @@
-import React from 'react';
+import { loadStripe } from '@stripe/stripe-js';
 
-const ModalPayment = ({ isOpen, onClose, onPay }) => {
+import { Elements } from "@stripe/react-stripe-js";
+import CheckoutForm from './CheckoutForm';
+
+
+const stripePromise = loadStripe(import.meta.env.VITE_PUBLISHABLE_KEY);
+
+
+const ModalPayment = ({ isOpen, onClose, onPay, amount }) => {
     if (!isOpen) return null;
     return (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
@@ -13,8 +20,13 @@ const ModalPayment = ({ isOpen, onClose, onPay }) => {
                 <div className="mt-4">
                     <h2 className="text-2xl font-bold mb-4">Payment Confirmation</h2>
                     <p className="mb-4">Are you sure you want to proceed with the payment?</p>
-                    
-                    <div className="flex justify-end space-x-2">
+
+                    {/* checkout form */}
+                    <Elements stripe={stripePromise}>
+                        <CheckoutForm onClose={onClose} onPay={onPay} amount={amount}/>
+                    </Elements>
+
+                    {/* <div className="flex justify-end space-x-2">
                         <button
                             onClick={onClose}
                             className="px-4 py-2 bg-gray-600 text-white rounded hover:bg-gray-700"
@@ -27,7 +39,7 @@ const ModalPayment = ({ isOpen, onClose, onPay }) => {
                         >
                             Pay
                         </button>
-                    </div>
+                    </div> */}
                 </div>
             </div>
         </div>

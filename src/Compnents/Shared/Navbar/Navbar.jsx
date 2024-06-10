@@ -29,6 +29,8 @@ const Navbar = () => {
 
     </>
 
+    console.log(role)
+
     const handleLogout = async () => {
         try {
             await logOut()

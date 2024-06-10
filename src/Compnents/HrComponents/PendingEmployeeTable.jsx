@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { AuthContext } from "../../Provider/AuthProvider";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
@@ -11,6 +11,10 @@ const PendingEmployeeTable = ({ item, refetch, refetch1, refetch2, limitCount, i
     const { user, loading } = useContext(AuthContext);
     const axiosSecure = useAxiosSecure();
     const [slectedCount, isSelectedCount] = useState(0);
+
+    useEffect(() => {
+        setLimit(limitCount?.employeeLimit)
+    }, [limitCount?.employeeLimit])
 
     console.log(arr);
     console.log('lim = ', limit)
@@ -145,7 +149,7 @@ const PendingEmployeeTable = ({ item, refetch, refetch1, refetch2, limitCount, i
                                 </td>
                                 <td>Employee</td>
                                 <th>
-                                    <button onClick={() => handleSingleEmployeeAdd(employee)} className="btn bg-primary-color text-white border-0 hover:bg-secondary-color">Add</button>
+                                    <button disabled={limit <= 0} onClick={() => handleSingleEmployeeAdd(employee)} className="btn bg-primary-color text-white border-0 hover:bg-secondary-color">Add</button>
                                 </th>
                             </tr>)
                         }
