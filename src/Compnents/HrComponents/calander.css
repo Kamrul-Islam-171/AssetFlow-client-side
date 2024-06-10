@@ -1,0 +1,28 @@
+/* src/components/BeautifulCalendar.css */
+.rbc-calendar {
+  @apply w-full;
+}
+
+.rbc-month-view {
+  @apply text-center;
+}
+
+.rbc-header {
+  @apply bg-gray-200 text-gray-700;
+}
+
+.rbc-today {
+  @apply bg-green-100;
+}
+
+.rbc-day-bg.rbc-off-range-bg {
+  @apply bg-gray-100;
+}
+
+.rbc-event {
+  @apply bg-blue-500 text-white p-1 rounded;
+}
+
+.rbc-event--vacation {
+  @apply bg-red-500 text-white;
+}

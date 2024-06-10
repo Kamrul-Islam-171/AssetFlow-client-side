@@ -8,6 +8,7 @@ import FivePendingRequests from "../../Compnents/HrComponents/FivePendingRequest
 import LimitedStocks from "../../Compnents/HrComponents/LimitedStocks";
 
 import TopFourRequestedItems from "../../Compnents/HrComponents/TopFourRequestedItems";
+import VacationCalander from "../../Compnents/HrComponents/VacationCalander";
 import About from "../../Compnents/NormalHomeComponents/About";
 import Bannar from "../../Compnents/NormalHomeComponents/Bannar";
 import PackageSection from "../../Compnents/NormalHomeComponents/PackageSection";
@@ -35,6 +36,10 @@ const Home = () => {
 
             <Events></Events>
             <Notice></Notice>
+
+            
+            <VacationCalander></VacationCalander>
+            
             
             
         </div>
