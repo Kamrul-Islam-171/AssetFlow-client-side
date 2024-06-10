@@ -6,18 +6,21 @@ import NormalNav from "../../NomarLavlinks/NormalNav";
 import useRole from "../../../Hooks/useRole";
 import HrNavlinks from "../../HrNavLinks/HrNavlinks";
 import EmployeeNavlinks from "../../EmployeeNavlinks/EmployeeNavlinks";
+import NavBarUser from "../../NavbarUser/NavBarUser";
+import useHr from "../../../Hooks/useHr";
 
 
 
 const Navbar = () => {
     const { user, logOut } = useContext(AuthContext);
     const [role] = useRole();
+    const [hrInformation] = useHr();
     const nablinks = <  >
 
         <div >
-        {/* <NormalNav></NormalNav> */}
+            {/* <NormalNav></NormalNav> */}
             {
-                role === 'admin' && <NormalNav></NormalNav>
+                role === '' && <NormalNav ></NormalNav>
             }
             {
                 role === 'HR' && <HrNavlinks></HrNavlinks>
@@ -43,7 +46,7 @@ const Navbar = () => {
 
     return (
         <div className="container mx-auto ">
-            <div className="navbar bg-base-100">
+            <div className="navbar bg-base-100  shadow-md mt-2">
                 <div className="navbar-start">
                     <div className="dropdown">
                         <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -53,12 +56,12 @@ const Navbar = () => {
                             {nablinks}
                         </ul>
                     </div>
-                    <a className="btn btn-ghost text-xl w-[100px]">
+                    <a className=" text-xl w-[50px] h-[50px]">
                         {
-                            role === 'admin' && <p>Admin</p>
+                            role === '' && <img className=" w-full h-full" src={'https://i.ibb.co/xhPw5LH/logo-2150297-640.png'}></img>
                         }
                         {
-                            role === 'HR' && <p>HR</p>
+                            role === 'HR' && <img className=" w-full h-full" src={hrInformation?.companyLogo}></img>
                         }
                         {
                             role === 'employee' && <p>Employee</p>
@@ -74,7 +77,30 @@ const Navbar = () => {
                     user ? <div className="navbar-end">
                         <button onClick={handleLogout} className="btn bg-primary-color border-0 px-5 text-white hover:bg-white hover:text-primary-color">Logout</button>
                     </div> :
-                        <div className="navbar-end">
+                        <div className="navbar-end space-x-3">
+                            {/* <div className="dropdown dropdown-end">
+
+                                {
+                                    role === '' && <NavBarUser userImg={'https://i.ibb.co/xhPw5LH/logo-2150297-640.png'}></NavBarUser>
+                                }
+
+
+
+                            </div> */}
+
+                            {
+                                role === '' && <div className="dropdown dropdown-end">
+
+                                    <NavBarUser userImg={'https://i.ibb.co/xhPw5LH/logo-2150297-640.png'}></NavBarUser>
+                                </div>
+                            }
+
+                            {
+                                role === 'HR' && <div className="dropdown dropdown-end">
+
+                                    <NavBarUser></NavBarUser>
+                                </div>
+                            }
                             <Link to='/login' className="btn bg-primary-color border-0 px-5 text-white hover:bg-white hover:text-primary-color">Login</Link>
                         </div>
                 }

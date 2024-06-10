@@ -29,7 +29,7 @@ const TopFourRequestedItems = () => {
     if (isPending || loading) return <LoadingSpinner></LoadingSpinner>
 
     return (
-        <div className="container mx-auto mt-16 space-y-5">
+        <div className="container mx-auto mt-20 space-y-10">
             <h1 className="text-4xl text-center">Most Requested Items</h1>
 
             <div>

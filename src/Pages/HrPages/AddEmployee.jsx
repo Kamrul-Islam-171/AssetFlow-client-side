@@ -76,7 +76,7 @@ const AddEmployee = () => {
 
     if (loading || isLoading || isLoading1 || isLoading2) return <LoadingSpinner></LoadingSpinner>
     return (
-        <div className="container mx-auto mt-10">
+        <div className="container mx-auto mt-10 mb-10">
             <Helmet><title>Add Employee</title></Helmet>
             <div className="flex justify-center" >
 

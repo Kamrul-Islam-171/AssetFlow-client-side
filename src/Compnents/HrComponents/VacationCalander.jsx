@@ -44,7 +44,7 @@ const VacationCalander = () => {
         };
     };
     return (
-        <div className="container mx-auto mt-10">
+        <div className="container mx-auto mt-20 space-y-10 mb-10">
         <h1 className="text-4xl  mb-5 text-center">Company Calendar</h1>
         <div className="bg-white p-5 shadow-md rounded-lg">
           <Calendar

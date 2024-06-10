@@ -89,7 +89,7 @@ const AssetList = () => {
     }
     // console.log(search)
     return (
-        <div className="container mx-auto">
+        <div className="container mx-auto mb-10">
             <Helmet><title>Asset lists</title></Helmet>
             <div className="mt-16">
                 <form onSubmit={handleSearch} className="space-y-5">

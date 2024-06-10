@@ -112,7 +112,7 @@ const AssetRequestTable = ({ assets, isDeleted, setisDeleted, count, refetch, pa
                                 <td>{item.email}</td>
                                 <td>{item.RName}</td>
                                 <td>{format(item.RequestDate, "MM/dd/yyyy")}</td>
-                                <td>not approved</td>
+                                <td>{item.Note}</td>
                                 <td>{item.Request}</td>
                                 <td><button onClick={() => handleApprove(item)} className="btn hover:text-primary-color hover:bg-white bg-primary-color border-0 text-white">approve</button></td>
                                 {/* <td><Link to={`/asset-update/${item._id}`}><button 

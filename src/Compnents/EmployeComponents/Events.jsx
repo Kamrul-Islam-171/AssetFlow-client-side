@@ -3,10 +3,10 @@
 const Events = () => {
     return (
         <>
-            <div className="mt-16">
+            <div className="mt-28">
                 <h1 className="text-center text-4xl">Upcoming Events</h1>
             </div>
-            <div className="grid lg:grid-cols-2 md:grid-cols-2 container mx-auto gap-6 mt-10">
+            <div className="grid lg:grid-cols-2 md:grid-cols-2 container mx-auto gap-6 mt-12">
                 <div className="relative h-[500px] ">
                     <img className="h-full  object-cover w-full" src={'https://i.ibb.co/56zS3rp/pngtree-a-conceptual-illustration-of-web-design-development-and-seo-optimization-in-image-13584944.png'} alt="" />
 

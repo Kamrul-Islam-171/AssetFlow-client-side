@@ -66,7 +66,7 @@ const ChartforYour = () => {
 
 
   return (
-    <div className=' h-[300px] mt-16'>
+    <div className=' h-[300px] mt-20'>
       {/* <p>{retunrabe}</p>
       <p>{nonRetunrabe}</p> */}
       <p className='text-4xl text-center'>Comparison Chart</p>

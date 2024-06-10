@@ -57,7 +57,7 @@ const MyEmployeeList = () => {
     if (loading || isLoading) return <LoadingSpinner></LoadingSpinner>
 
     return (
-        <div className="container mx-auto mt-10">
+        <div className="container mx-auto mt-10 mb-10">
             <Helmet><title>My Employee List</title></Helmet>
 
             <h1 className="text-center text-4xl">My Team Members</h1>

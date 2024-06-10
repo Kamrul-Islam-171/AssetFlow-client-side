@@ -3,7 +3,8 @@ import { NavLink } from "react-router-dom";
 
 const NormalNav = () => {
     return (
-        <div className="flex gap-5">
+        <div className="flex gap-8 text-lg mb-5">
+
             <NavLink to="/"
                 className={({ isActive }) =>
                     isActive
@@ -13,6 +14,7 @@ const NormalNav = () => {
             >
                 Home
             </NavLink>
+
             <NavLink to={'/join-as-employee'} className={({ isActive }) =>
                 isActive
                     ? 'text-primary-color border-b-2 border-primary-color'
