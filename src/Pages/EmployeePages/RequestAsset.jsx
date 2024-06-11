@@ -10,6 +10,7 @@ import { GrCaretNext } from "react-icons/gr";
 import { GrCaretPrevious } from "react-icons/gr";
 import { AuthContext } from "../../Provider/AuthProvider";
 import EmployeeAssetTable from "../../Compnents/EmployeComponents/EmployeeAssetTable";
+import { Helmet } from "react-helmet-async";
 
 const RequestAsset = () => {
     const { user, loading } = useContext(AuthContext);
@@ -92,7 +93,8 @@ const RequestAsset = () => {
         return <LoadingSpinner></LoadingSpinner>
     }
     return (
-        <div className="container mx-auto">
+        <div className="container mx-auto mb-10">
+            <Helmet><title>Request asset</title></Helmet>
             <div className="mt-16">
                 <form onSubmit={handleSearch} className="space-y-5">
                     <div className="flex justify-center" >

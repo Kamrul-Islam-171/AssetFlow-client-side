@@ -57,7 +57,7 @@ const AssetRequestTable = ({ assets, isDeleted, setisDeleted, count, refetch, pa
     }
 
     const handleApprove = async (item) => {
-        console.log('item decre = ',item.RequestAssetId);
+        // console.log('item decre = ',item.RequestAssetId);
         try {
             // decrease quantity
             await axiosSecure.patch(`/approval-decrease/${item.RequestAssetId}`);

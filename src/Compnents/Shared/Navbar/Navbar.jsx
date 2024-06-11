@@ -9,6 +9,7 @@ import EmployeeNavlinks from "../../EmployeeNavlinks/EmployeeNavlinks";
 import NavBarUser from "../../NavbarUser/NavBarUser";
 import useHr from "../../../Hooks/useHr";
 import useEmployee from "../../../Hooks/useEmployee";
+import useUser from "../../../Hooks/useUser";
 
 
 
@@ -17,6 +18,7 @@ const Navbar = () => {
     const [role] = useRole();
     const [hrInformation] = useHr();
     const [myInfoAsEmployee] = useEmployee();
+    const [myInfoAsUser] = useUser();
     const nablinks = <  >
 
         <div >
@@ -83,13 +85,13 @@ const Navbar = () => {
                 {
                     user ? <div className="navbar-end space-x-3">
                         {
-                            role === 'employee' && !myInfoAsEmployee?.companyLogo && <NavBarUser  userImg={user?.photoURL}></NavBarUser>
+                            role === 'employee' && !myInfoAsEmployee?.companyLogo && <NavBarUser  userImg={myInfoAsUser?.image}></NavBarUser>
                         }
                         {
-                            role === 'employee' && myInfoAsEmployee?.companyLogo && <NavBarUser userImg={user?.photoURL}></NavBarUser>
+                            role === 'employee' && myInfoAsEmployee?.companyLogo && <NavBarUser userImg={myInfoAsUser?.image}></NavBarUser>
                         }
                         {
-                            role === 'HR' && <NavBarUser userImg={user?.photoURL}></NavBarUser>
+                            role === 'HR' && <NavBarUser userImg={myInfoAsUser?.image}></NavBarUser>
                         }
                         <button onClick={handleLogout} className="btn bg-primary-color border-0 px-5 text-white hover:bg-white hover:text-primary-color">Logout</button>
                     </div> :

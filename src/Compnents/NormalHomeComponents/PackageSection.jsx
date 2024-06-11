@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const PackageSection = () => {
     return (
-        <div className="container mx-auto mt-20 space-y-8 px-5 ">
+        <div className="container mx-auto mt-20 space-y-8 px-5 mb-10">
             <h1 className="text-4xl text-center">Packages Plan</h1>
             <p className='text-center'>Unlock efficient asset tracking tailored for HR Managers with our specialized packages.</p>
             <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-6 pt-5'>

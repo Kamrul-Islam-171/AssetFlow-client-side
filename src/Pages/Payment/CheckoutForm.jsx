@@ -103,7 +103,8 @@ const CheckoutForm = ({ onClose, onPay, amount }) => {
                 else if(amount === 8) incrementLimit = 10
                 else if(amount === 15) incrementLimit = 20
                 
-                await axiosSecure.patch(`/update-limit-count/${user?.email}`, {incrementLimit})
+                await axiosSecure.patch(`/update-limit-count/${user?.email}`, {incrementLimit});
+                toast.success('Payment Successfull')
                 navigate('/add-employee')
             } catch (error) {
                 console.log(error);

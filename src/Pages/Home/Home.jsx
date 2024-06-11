@@ -19,6 +19,7 @@ import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import LoadingSpinner from "../../Compnents/LoadingSpinner/LoadingSpinner";
 import { useLocation } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 
 const Home = () => {
@@ -45,6 +46,7 @@ const Home = () => {
     console.log('mymyHrInfo = ',myHrInfo);
     return (
         <div>
+            <Helmet><title>Home</title></Helmet>
             {
                 role === '' && <Bannar></Bannar>
                 

@@ -7,6 +7,7 @@ import NoData from "../NoData/NoData";
 
 import { GrCaretNext, GrCaretPrevious } from "react-icons/gr";
 import MyRequestedAssetsTable from "./MyRequestedAssetsTable";
+import { Helmet } from "react-helmet-async";
 
 const MyRequestedAsset = () => {
     const {user, loading} = useContext(AuthContext);
@@ -85,6 +86,7 @@ const MyRequestedAsset = () => {
     }
     return (
         <div className="container mx-auto">
+            <Helmet><title>My Requested Asset</title></Helmet>
             <div className="mt-16">
                 <form onSubmit={handleSearch} className="space-y-5">
                     <div className="flex justify-center" >

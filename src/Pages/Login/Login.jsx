@@ -1,12 +1,13 @@
 import { useContext } from "react";
 import { FcGoogle } from "react-icons/fc";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Provider/AuthProvider";
 import toast from "react-hot-toast";
 
 
 const Login = () => {
     const { signInWithGoogle, signIn, logOut } = useContext(AuthContext);
+    const location = useLocation();
     const navigate = useNavigate();
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -18,8 +19,10 @@ const Login = () => {
             .then(result => {
                 // console.log(result.user)
                 toast.success('Login successfull')
-                navigate('/')
-                window.location.reload();
+                setTimeout(() => {
+                    navigate(location?.state ? location.state : '/')
+                    window.location.reload();
+                }, 1000);
 
             })
             .catch(error => {
@@ -32,14 +35,16 @@ const Login = () => {
         try {
             await signInWithGoogle();
             toast.success('Login successfull')
-            navigate('/')
-            window.location.reload();
+            setTimeout(() => {
+                navigate(location?.state ? location.state : '/')
+                window.location.reload();
+            }, 1000);
         } catch (error) {
             console.log(error)
             toast.error(error.message)
         }
     }
- 
+
     return (
         <div className='flex justify-center items-center min-h-screen'>
             <div className='flex flex-col max-w-md p-6 rounded-md sm:p-10 bg-gray-100 text-gray-900'>
@@ -113,7 +118,7 @@ const Login = () => {
                     <FcGoogle size={32} />
                     <p>Continue with Google</p>
                 </button>
-               
+
                 {/* <p className='px-6 text-sm text-center text-gray-400'>
                     Don&apos;t have an account yet?{' '}
                     <Link

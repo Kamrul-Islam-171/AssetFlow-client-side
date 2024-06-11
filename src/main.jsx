@@ -27,6 +27,8 @@ import MyEmployeeList from './Pages/HrPages/MyEmployeeList.jsx';
 import Profile from './Pages/Profile/Profile.jsx';
 import MyTeam from './Pages/EmployeePages/MyTeam.jsx';
 import Payment from './Pages/Payment/Payment.jsx';
+import PrivateRoute from './PrivateRoute/PrivateRoute.jsx';
+import HrRoute from './PrivateRoute/HrRoute.jsx';
 
 const queryClient = new QueryClient()
 
@@ -50,47 +52,47 @@ const router = createBrowserRouter([
       },
       {
         path:'/add-asset',
-        element:<AddAsset></AddAsset>
+        element:<PrivateRoute><HrRoute><AddAsset></AddAsset></HrRoute></PrivateRoute>
       },
       {
         path:'/asset-list',
-        element:<AssetList></AssetList>
+        element:<PrivateRoute><HrRoute><AssetList></AssetList></HrRoute></PrivateRoute>
       },
       {
         path:'/request-asset',
-        element:<RequestAsset></RequestAsset>
+        element:<PrivateRoute><RequestAsset></RequestAsset></PrivateRoute>
       },
       {
         path:'/asset-update/:id',
-        element: <UpdateAsset></UpdateAsset>
+        element: <PrivateRoute><UpdateAsset></UpdateAsset></PrivateRoute>
       },
       {
         path:'/my-request-assets',
-        element:<MyRequestedAsset></MyRequestedAsset>
+        element:<PrivateRoute><MyRequestedAsset></MyRequestedAsset></PrivateRoute>
       },
       {
         path:'/asset-request',
-        element:<AllRequests></AllRequests>
+        element:<PrivateRoute><HrRoute><AllRequests></AllRequests></HrRoute></PrivateRoute>
       },
       {
         path:'/add-employee',
-        element:<AddEmployee></AddEmployee>
+        element:<PrivateRoute><HrRoute><AddEmployee></AddEmployee></HrRoute></PrivateRoute>
       },
       {
         path:'/my-employee-list',
-        element:<MyEmployeeList></MyEmployeeList>
+        element:<PrivateRoute><HrRoute><MyEmployeeList></MyEmployeeList></HrRoute></PrivateRoute>
       },
       {
         path:'/profile',
-        element:<Profile></Profile>
+        element:<PrivateRoute><Profile></Profile></PrivateRoute>
       },
       {
         path:'my-team',
-        element:<MyTeam></MyTeam>
+        element:<PrivateRoute><MyTeam></MyTeam></PrivateRoute>
       },
       {
         path:'/payment',
-        element:<Payment></Payment>
+        element:<PrivateRoute><Payment></Payment></PrivateRoute>
       }
   
     ]

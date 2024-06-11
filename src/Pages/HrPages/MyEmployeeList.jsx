@@ -53,8 +53,9 @@ const MyEmployeeList = () => {
 
         // refetch()
     }
-
+    
     if (loading || isLoading) return <LoadingSpinner></LoadingSpinner>
+    console.log('my-eomdf = ',myEmployeeList)
 
     return (
         <div className="container mx-auto mt-10 mb-10">
@@ -68,7 +69,7 @@ const MyEmployeeList = () => {
                         <MyEmployeeTable myEmployeeList={myEmployeeList} isDeleted={isDeleted} setisDeleted={setisDeleted} refetch={refetch} page={page} setPage={setPage} currentPage={currentPage} setCurrentPage={setCurrentPage} count={count}></MyEmployeeTable>
                         <div className="flex justify-center items-center mt-5">
                             <button onClick={() => handlePageChange(page - 1)} disabled={page === 1} className="btn mr-2"><GrCaretPrevious /></button>
-                            {/* <p>{currentPage}</p> */}
+                           
                             <span className="flex gap-4">
                                 {
                                     pages?.map((pageNo) => <button onClick={() => {
