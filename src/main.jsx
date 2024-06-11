@@ -89,7 +89,7 @@ const router = createBrowserRouter([
       },
       {
         path:'my-team',
-        element:<PrivateRoute><MyTeam></MyTeam></PrivateRoute>
+        element:<PrivateRoute><EmployeeRoute><MyTeam></MyTeam></EmployeeRoute></PrivateRoute>
       },
       {
         path:'/payment',

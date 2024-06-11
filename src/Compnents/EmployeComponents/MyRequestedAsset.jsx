@@ -85,7 +85,7 @@ const MyRequestedAsset = () => {
         return <LoadingSpinner></LoadingSpinner>
     }
     return (
-        <div className="container mx-auto">
+        <div className="container mx-auto mb-10">
             <Helmet><title>My Requested Asset</title></Helmet>
             <div className="mt-16">
                 <form onSubmit={handleSearch} className="space-y-5">
@@ -126,7 +126,7 @@ const MyRequestedAsset = () => {
             <div className="mt-10">
                 {
                     assets?.length > 0  ? <>
-                        <MyRequestedAssetsTable assets={assets}></MyRequestedAssetsTable>
+                        <MyRequestedAssetsTable assets={assets} refetch={refetch}></MyRequestedAssetsTable>
                         <div className="flex justify-center items-center mt-5">
                             <button onClick={() => handlePageChange(page - 1)} disabled={page === 1} className="btn mr-2"><GrCaretPrevious /></button>
                             {/* <p>{currentPage}</p> */}

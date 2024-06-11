@@ -17,15 +17,15 @@ const EmployeeRoute = ({ children }) => {
     // console.log(user)
 
     console.log( 'myemp = ', myInfoAsEmployee?.companyLogo)
-    if (loading ) {
+    if (loading || isPending ) {
         return <LoadingSpinner></LoadingSpinner>
     }
 
-    if (user  && myInfoAsEmployee?.companyLogo) return children;
+    if (user  && role === 'employee') return children;
 
 
     return (
-        <Navigate to={'/'}></Navigate>
+        <Navigate to={'/login'} state={location.pathname}></Navigate>
     );
 };
 
