@@ -10,6 +10,7 @@ import NavBarUser from "../../NavbarUser/NavBarUser";
 import useHr from "../../../Hooks/useHr";
 import useEmployee from "../../../Hooks/useEmployee";
 import useUser from "../../../Hooks/useUser";
+import Notification from "../../Notification/Notification";
 
 
 
@@ -84,8 +85,9 @@ const Navbar = () => {
                 </div>
                 {
                     user ? <div className="navbar-end space-x-3">
+                        <Notification></Notification>
                         {
-                            role === 'employee' && !myInfoAsEmployee?.companyLogo && <NavBarUser  userImg={myInfoAsUser?.image}></NavBarUser>
+                            role === 'employee' && !myInfoAsEmployee?.companyLogo && <NavBarUser userImg={myInfoAsUser?.image}></NavBarUser>
                         }
                         {
                             role === 'employee' && myInfoAsEmployee?.companyLogo && <NavBarUser userImg={myInfoAsUser?.image}></NavBarUser>
@@ -96,8 +98,8 @@ const Navbar = () => {
                         <button onClick={handleLogout} className="btn bg-primary-color border-0 px-5 text-white hover:bg-white hover:text-primary-color">Logout</button>
                     </div> :
                         <div className="navbar-end space-x-3">
-                            
-                          
+
+
 
                             {
                                 role === '' && <div className="dropdown dropdown-end">
@@ -106,7 +108,7 @@ const Navbar = () => {
                                 </div>
                             }
 
-                          
+
                             <Link to='/login' className="btn bg-primary-color border-0 px-5 text-white hover:bg-white hover:text-primary-color">Login</Link>
                         </div>
                 }

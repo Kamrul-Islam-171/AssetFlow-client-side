@@ -16,7 +16,7 @@ const useEmployee = () => {
             return data;
         }
     })
-    return [myInfoAsEmployee];
+    return [myInfoAsEmployee, isLoading];
 };
 
 export default useEmployee;

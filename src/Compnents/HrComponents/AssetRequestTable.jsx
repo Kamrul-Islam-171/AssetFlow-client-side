@@ -17,8 +17,8 @@ const AssetRequestTable = ({ assets, isDeleted, setisDeleted, count, refetch, pa
     // console.log(page, currentPage);
 
     // console.log(assets.length)
-    const handleDelete = async (id) => {
-        console.log(id)
+    const handleDelete = async (item) => {
+        // console.log(id)
         Swal.fire({
             title: "Are you sure?",
             text: "You won't be able to revert this!",
@@ -29,16 +29,24 @@ const AssetRequestTable = ({ assets, isDeleted, setisDeleted, count, refetch, pa
             confirmButtonText: "Yes, Reject it!"
         }).then(async (result) => {
             if (result.isConfirmed) {
-               
+
                 try {
-                    await axiosSecure.delete(`/reject-asset/${id}`);
+                    const userInfo = {
+                        email: item.email,
+                        ProductName: item.ProductName,
+                        status: 'rejected',
+                        date : new Date()
+
+                    }
+                    await axiosSecure.delete(`/reject-asset/${item._id}`);
+                    await axiosSecure.post('/notification', userInfo);
                     setisDeleted(!isDeleted)
                     refetch()
                     if (assets.length === 1 && currentPage > 1) {
                         setCurrentPage(Math.floor(count / 10))
                         setPage(Math.floor(count / 10))
                     }
-                    
+
                     Swal.fire({
                         title: "Rejected!",
                         text: "You reject the asset.",
@@ -59,11 +67,20 @@ const AssetRequestTable = ({ assets, isDeleted, setisDeleted, count, refetch, pa
     const handleApprove = async (item) => {
         // console.log('item decre = ',item.RequestAssetId);
         try {
+            const userInfo = {
+                email: item.email,
+                ProductName: item.ProductName,
+                status: 'approved',
+                date : new Date()
+
+            }
             // decrease quantity
             await axiosSecure.patch(`/approval-decrease/${item.RequestAssetId}`);
             // status update = pending->approve
             console.log(item._id)
             await axiosSecure.patch(`/status-update/${item._id}`)
+            // notifi the user
+            await axiosSecure.post('/notification', userInfo);
             refetch(); //ui update
             setisDeleted(!isDeleted);
             if (assets.length === 1 && currentPage > 1) {
@@ -117,7 +134,7 @@ const AssetRequestTable = ({ assets, isDeleted, setisDeleted, count, refetch, pa
                                 <td><button onClick={() => handleApprove(item)} className="btn hover:text-primary-color hover:bg-white bg-primary-color border-0 text-white">approve</button></td>
                                 {/* <td><Link to={`/asset-update/${item._id}`}><button 
                                     className="btn hover:text-primary-color hover:bg-white bg-primary-color border-0 text-white">Update</button></Link></td> */}
-                                <td><button onClick={() => handleDelete(item._id)} className="btn hover:text-primary-color hover:bg-white bg-primary-color border-0 text-white">Reject</button></td>
+                                <td><button onClick={() => handleDelete(item)} className="btn hover:text-primary-color hover:bg-white bg-primary-color border-0 text-white">Reject</button></td>
 
 
 

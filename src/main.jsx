@@ -29,6 +29,7 @@ import MyTeam from './Pages/EmployeePages/MyTeam.jsx';
 import Payment from './Pages/Payment/Payment.jsx';
 import PrivateRoute from './PrivateRoute/PrivateRoute.jsx';
 import HrRoute from './PrivateRoute/HrRoute.jsx';
+import EmployeeRoute from './PrivateRoute/EmployeeRoute.jsx';
 
 const queryClient = new QueryClient()
 
@@ -60,7 +61,7 @@ const router = createBrowserRouter([
       },
       {
         path:'/request-asset',
-        element:<PrivateRoute><RequestAsset></RequestAsset></PrivateRoute>
+        element:<PrivateRoute><EmployeeRoute><RequestAsset></RequestAsset></EmployeeRoute></PrivateRoute>
       },
       {
         path:'/asset-update/:id',
@@ -68,7 +69,7 @@ const router = createBrowserRouter([
       },
       {
         path:'/my-request-assets',
-        element:<PrivateRoute><MyRequestedAsset></MyRequestedAsset></PrivateRoute>
+        element:<PrivateRoute><EmployeeRoute><MyRequestedAsset></MyRequestedAsset></EmployeeRoute></PrivateRoute>
       },
       {
         path:'/asset-request',
