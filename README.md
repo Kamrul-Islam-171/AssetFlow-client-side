@@ -9,14 +9,22 @@ Live link1 : (https://assignment-twelve-5f184.web.app/)
 Live link1 : (https://comforting-kashata-2b6a54.netlify.app/)
 
 
-## Key Features
+# Key Features : 
 
 ## General Features :
 1. **User Authentication & Authorization** : Secure login for employees and HR managers with role-based access control.
+2. **Responsive Design** : The application is fully responsive, providing optimal usability across all devices and screen sizes.
 ## Employee Features :
 1. **Search & Filter** : Search and filter requested assets by name, status, and type.
-2. **Print Functionality** : Generates a printable page for approved assets.
-
+2. **Request for an Asset** : Employee can request for an asset.
+3. **Print Functionality** : Generates a printable page for approved assets.
+4. **Approval/Rejection Notification** : When an HR manager approves/rejects an asset request, the corresponding employee receives a notification for the approved/rejected asset.
+##HR Manager Features :
+1. **Add, update, and delete assets** : HR managers can add new assets, update existing ones, and delete assets from the system.
+2. **Search, Filter & Sort** : Search, filter, and sort assets by name, status, and quantity.
+3. **Search asset requests** : Search requests by requester name or email.
+4. **Add and remove employees** : HR managers can add unaffiliated employees to their team and remove existing team members.
+5. **Payment Method** : Interface for HR managers to pay for increased member limits based on selected packages.
 
 
 
