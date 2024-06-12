@@ -65,7 +65,7 @@ const router = createBrowserRouter([
       },
       {
         path:'/asset-update/:id',
-        element: <PrivateRoute><UpdateAsset></UpdateAsset></PrivateRoute>
+        element: <PrivateRoute><HrRoute><UpdateAsset></UpdateAsset></HrRoute></PrivateRoute>
       },
       {
         path:'/my-request-assets',

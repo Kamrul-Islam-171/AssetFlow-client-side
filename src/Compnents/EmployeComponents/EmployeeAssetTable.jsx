@@ -89,6 +89,7 @@ const EmployeeAssetTable = ({ assets }) => {
                                 }} disabled={!item.Quantity} className="btn hover:text-primary-color hover:bg-white bg-primary-color border-0 text-white">Request</button></td> */}
                                 <td>
                                     <button
+                                        disabled={!item.Quantity}
                                         onClick={
                                            
                                            ()=> toggleModal(item)

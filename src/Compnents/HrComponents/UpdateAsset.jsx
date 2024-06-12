@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import React from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
 import toast from 'react-hot-toast';
 
@@ -10,6 +10,7 @@ import useAxiosSecure from '../../Hooks/useAxiosSecure';
 const UpdateAsset = () => {
     const { id } = useParams();
     const axiosSecure = useAxiosSecure();
+    const navigate = useNavigate();
     const { data: asset = {}, isLoading } = useQuery({
         queryKey: ['asset-info', id],
         queryFn: async () => {
@@ -29,6 +30,7 @@ const UpdateAsset = () => {
         const ProductName = form.name.value;
         const ProductType = form.proType.value;
         const Quantity = parseInt(form.quantity.value);
+        
 
         const ProductInfo = {
             ProductName, ProductType, Quantity
@@ -37,7 +39,8 @@ const UpdateAsset = () => {
 
         try {
             await axiosSecure.patch(`/update-asset/${id}`, ProductInfo);
-            toast.success('Product Updated')
+            toast.success('Product Updated');
+            navigate('/asset-list')
         } catch (error) {
             console.log(error);
             toast.error(error.message)
