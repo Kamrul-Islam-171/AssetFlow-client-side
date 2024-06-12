@@ -18,6 +18,7 @@ const MyRequestedAsset = () => {
     const [available, setAvailable] = useState('');
     const [page, setPage] = useState(1);
     const [limit] = useState(10);
+    const [isDeleted, setIsDeleted] = useState(false);
     const [count, setCount] = useState(0);
     const [currentPage, setCurrentPage] = useState(1);
     const itemsPerpage = 10;
@@ -34,7 +35,7 @@ const MyRequestedAsset = () => {
                 
             })
 
-    }, [axiosSecure, search, returnAble, sort, available, user?.email])
+    }, [axiosSecure, search, returnAble, sort, available, user?.email,isDeleted ])
     // console.log('curnt = ', count)
    
    
@@ -126,7 +127,7 @@ const MyRequestedAsset = () => {
             <div className="mt-10">
                 {
                     assets?.length > 0  ? <>
-                        <MyRequestedAssetsTable assets={assets} refetch={refetch}></MyRequestedAssetsTable>
+                        <MyRequestedAssetsTable assets={assets} refetch={refetch} isDeleted={isDeleted} setIsDeleted={setIsDeleted} page={page} setPage={setPage} currentPage={currentPage} setCurrentPage={setCurrentPage} count={count}></MyRequestedAssetsTable>
                         <div className="flex justify-center items-center mt-5">
                             <button onClick={() => handlePageChange(page - 1)} disabled={page === 1} className="btn mr-2"><GrCaretPrevious /></button>
                             {/* <p>{currentPage}</p> */}

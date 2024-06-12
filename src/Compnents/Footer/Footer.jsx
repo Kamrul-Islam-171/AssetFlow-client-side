@@ -27,7 +27,7 @@ const Footer = () => {
                 <div className='text-white pt-20 text-center lg:text-start  grid gap-5 lg:grid-cols-4 md:grid-cols-2 '>
                     <div className="">
                         <div className="flex items-center gap-2">
-                            <img src={'https://i.ibb.co/2FFGJgC/altpulse-removebg-preview.png'} className=' w-[30px] h-[30px] ' alt="" />
+                            <img src={'https://i.ibb.co/xhPw5LH/logo-2150297-640.png'} className=' w-[30px] h-[30px] ' alt="" />
                             <h1 className='text-gray-100 text-2xl font-bold'>Asset<span className="text-primary-color">Flow</span></h1>
                         </div>
                         <p className='text-gray-400 '>Welcome to our all-in-one platform, where employees and HR professionals can seamlessly access a range of essential services. Empower your team and streamline your HR processes with ease.</p>

@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 
 const NormalNav = () => {
     return (
-        <div className="flex gap-8 text-lg mb-5">
+        <div className="flex flex-col lg:flex-row gap-8 text-lg mb-5">
 
             <NavLink to="/"
                 className={({ isActive }) =>
