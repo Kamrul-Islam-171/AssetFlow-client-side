@@ -11,8 +11,11 @@ Live link1 : (https://comforting-kashata-2b6a54.netlify.app/)
 
 ## Key Features
 
-##General Features :
-1.**User Authentication & Authorization**: Secure login for employees and HR managers with role-based access control.
+## General Features :
+1. **User Authentication & Authorization** : Secure login for employees and HR managers with role-based access control.
+## Employee Features :
+1. **Search & Filter** : Search and filter requested assets by name, status, and type.
+2. **Print Functionality** : Generates a printable page for approved assets.
 
 
 
