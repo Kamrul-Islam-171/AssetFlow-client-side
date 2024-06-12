@@ -19,7 +19,7 @@ Live link1 : (https://comforting-kashata-2b6a54.netlify.app/)
 2. **Request for an Asset** : Employee can request for an asset.
 3. **Print Functionality** : Generates a printable page for approved assets.
 4. **Approval/Rejection Notification** : When an HR manager approves/rejects an asset request, the corresponding employee receives a notification for the approved/rejected asset.
-##HR Manager Features :
+## HR Manager Features :
 1. **Add, update, and delete assets** : HR managers can add new assets, update existing ones, and delete assets from the system.
 2. **Search, Filter & Sort** : Search, filter, and sort assets by name, status, and quantity.
 3. **Search asset requests** : Search requests by requester name or email.
