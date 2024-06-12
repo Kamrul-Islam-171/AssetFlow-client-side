@@ -6,7 +6,7 @@
 
 
 Live link1 : (https://assignment-twelve-5f184.web.app/)
-Live link1 : (https://comforting-kashata-2b6a54.netlify.app/)
+Live link1 : (https://jade-kitten-60697f.netlify.app/)
 
 
 # Key Features : 
