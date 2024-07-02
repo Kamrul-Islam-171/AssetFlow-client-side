@@ -41,12 +41,10 @@ Live link1 : (https://jade-kitten-60697f.netlify.app/)
 Open your terminal and run the following command to clone the repository:
 git clone https://github.com/username/repository.git
 Replace https://github.com/username/repository.git with the actual URL of the repository.
-
 2.Install Dependencies:
 Before you can run the project, you need to install the necessary dependencies. Make sure you have Node.js and npm (Node Package Manager) installed. Run the following command:
 npm install
 This command will install all the dependencies listed in the package.json file.
-
 3. Start the Development Server:
 After the dependencies are installed, you can start the development server by running:
 npm run dev
